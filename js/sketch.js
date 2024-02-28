@@ -1,3 +1,12 @@
+//brick wall art from Maksym Tarkhov @ https://www.vecteezy.com/vector-art/27493030-cartoon-brick-wall-of-red-color-castle-tile-square-seamless-pattern
+
+let img;
+
+function preload() {
+  //load image
+  img = loadImage('background.png');
+}
+
 function setup() {
     canvasContainer = $("#canvas-container");
   let canvas = createCanvas(canvasContainer.width(), canvasContainer.height());
@@ -7,7 +16,8 @@ function setup() {
       console.log("Resizing...");
       resizeCanvas(canvasContainer.width(), canvasContainer.height());
   });
-  background(0);
+  //Draw the loaded image onto the canvas
+  image(img, 0, 0, width, height);
   }
   
   function draw() {
