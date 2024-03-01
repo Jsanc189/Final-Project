@@ -1,5 +1,23 @@
 class oven {
     constructor() {
-        console.log('i am an oven');
+        this.inOven = []; // array of items currently in oven
+    }
+
+    /**
+     * adds food item to oven
+     * @param {String}
+     */
+    addToOven(food) {
+        this.inOven.push(food);
+    }
+
+    /**
+     * calculates ingredients and returns a string name of the product
+     * @returns {String} name of final food
+     */
+    bake() {
+        // mix things
+
+        this.inOven = [];
     }
 }
