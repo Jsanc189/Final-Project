@@ -1,0 +1,86 @@
+{
+    "bacon" : {
+        "img" : "",
+        "plus" : {
+        }
+    },
+    "cheese" : {
+        "img" : "path/to/img",
+        "plus" : {
+            "dough" : "cheesy-dough",
+            "cheesier-dough" : "cheese",
+            "cheesy-dough" : "cheesier-dough"
+        }
+    },
+    "cheesier-dough" : {
+        "img" : "",
+        "plus" : {
+        }
+    },
+    "cheesy-dough" : {
+        "img" : "",
+        "plus" : {
+        }
+    },
+    "dough" : {
+        "img" : "",
+        "plus" : {
+            "goop" : "pizza-dough",
+            "shredded cheese" : "cheesy-dough"
+        }
+    },
+    "goop" : {
+        "img" : "",
+        "plus" : {
+        }
+    },
+    "mushroom" : {
+        "img" : "",
+        "plus" : {
+        }
+    },
+    "pepperoni" : {
+        "img" : "",
+        "plus" : {
+        }
+    },
+    "pizza" : {
+        "img" : "",
+        "plus" : {
+        }
+    },
+    "pizza-dough" : {
+        "img" : "",
+        "plus" : {
+            "goop": "pizza"
+        }
+    },
+    "tomato" : {
+        "img" : "",
+        "plus" : {
+        }
+    },
+
+    "bender" : {
+        "plus" : {
+            "pepperoni" : "bacon",
+            "pizza" : "dough",
+            "mushroom" : "goop",
+            "tomato" : "goop"
+        }
+    },
+    "knife" : {
+        "plus" : {
+            "pepperoni" : "bacon",
+            "pizza" : "cheese-sticks",
+            "tomato" : "goop"
+        }
+    },
+    "oven" : {
+        "plus" : {
+            "cheese" : "goop",
+            "cheesier-dough" :  "cheese-sticks",
+            "cheesy-dough" : "pizza"
+        }
+    }
+}
