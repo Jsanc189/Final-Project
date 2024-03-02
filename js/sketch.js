@@ -26,7 +26,7 @@ function setup() {
   //Draw the loaded image onto the canvas
   image(img, 0, 0, width, height);
   var f1 = new Food("test1", 0, 0, 200, 200, 20);
-  var f1 = new Food("test2", 0, 0, 260, 180, 45);
+  var f2 = new Food("test2", 0, 0, 260, 180, 45);
 }
 
 function draw() {
