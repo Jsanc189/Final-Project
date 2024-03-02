@@ -13,10 +13,19 @@ class Food {
     hoverIndex: -1
   };
   static instances = [];
-  constructor(name, ingredients, possibleCombos, x, y, r) {
+  static CombosLib = null;
+
+
+  constructor(name, x, y, r, allCombos, ingredients = []) {
     this.name = name; // name of food (string)
-    this.ingredients = ingredients; // list of ingredients that make up food (List<string>[])
-    this.possibleCombos = possibleCombos; // dictionary of combinations for the food item, with entries being the result (Dict {})
+    this.ingredients = ingredients; // list of ingredients that make up food (List<Food>[])
+    this.possibleCombos = {};
+    if(!Food.CombosLib){
+      Food.CombosLib = allCombos;
+    }
+    if(allCombos[name]){
+      this.possibleCombos = allCombos[name].plus; // dictionary of combinations for the food item, with entries being the result (Dict {})
+    }
     this.x = x;
     this.y = y;
     this.r = r;
@@ -34,6 +43,39 @@ class Food {
     if (!(item in this.possibleCombos)) return null;
     return this.possibleCombos[item]; // if a possible combo exists, returns a string of the name
   }
+  static merge(index){
+    var Outcomes = [];
+    for(var i = 0; i < Food.instances.length; i++){
+      if(i !== index){
+        if(dist(Food.instances[index].x, Food.instances[index].y, Food.instances[i].x, Food.instances[i].y) < Food.instances[i].r + Food.instances[index].r){
+          var Outcome1 = Food.instances[i].getOutcome(Food.instances[index].name);
+          var Outcome2 = Food.instances[index].getOutcome(Food.instances[i].name);
+          console.log(Outcome1);
+          console.log(Outcome2);
+          if(Outcome1){
+            Outcomes.push({name: Outcome1, i:i});
+          }
+          if(Outcome2){
+            Outcomes.push({name: Outcome2, i:i});
+          }
+        }
+      }
+    }
+    if(Outcomes.length > 0){
+      var picked = random(Outcomes);
+      var i1 = Food.instances[index];
+      var i2 = Food.instances[picked.i];
+      if(picked.i > index){
+        Food.instances.splice(picked.i, 1);
+        Food.instances.splice(index, 1);
+      } else{
+        Food.instances.splice(index, 1);
+        Food.instances.splice(picked.i, 1);
+      }
+      var I = new Food(picked.name, i1.x, i1.y, i1.r, Food.CombosLib, [i1, i2]);
+      console.log(I);
+    }
+  }
   static drag(){
     Food.dragHandler.hoverIndex = -1;
     for(var i = 0; i < Food.instances.length; i++){
@@ -47,7 +89,8 @@ class Food {
       Food.dragHandler.xOffset = Food.instances[Food.instances.length-1].x - mouseX;
       Food.dragHandler.yOffset = Food.instances[Food.instances.length-1].y - mouseY;
     }
-    if(!mouseIsPressed){
+    if(!mouseIsPressed && Food.dragHandler.dragging){
+      Food.merge(Food.instances.length-1);
       Food.dragHandler.dragging = false;
     }
     if(Food.dragHandler.dragging){
@@ -57,6 +100,8 @@ class Food {
     }
   }
   static draw(){
+    textAlign(CENTER, CENTER);
+    textSize(7);
     for(var i = 0; i < Food.instances.length; i++){
       fill(255);
       if(i === Food.dragHandler.hoverIndex){
@@ -66,6 +111,9 @@ class Food {
         fill(200);
       }
       ellipse(Food.instances[i].x, Food.instances[i].y, Food.instances[i].r*2, Food.instances[i].r*2);
+      fill(0);
+      text(Food.instances[i].name, Food.instances[i].x, Food.instances[i].y);
+  
     }
   }
 }
