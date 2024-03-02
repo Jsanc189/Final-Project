@@ -8,7 +8,7 @@ function preload() {
   img = loadImage("background.png");
 
   let xhreq = new XMLHttpRequest();
-  xhreq.open("GET", "./food.json", false);
+  xhreq.open("GET", "./js/food.json", false);
   xhreq.send(null);
   FOODLIB = JSON.parse(xhreq.responseText);
   console.log(FOODLIB);
