@@ -31,9 +31,6 @@ function setup() {
 
 function draw() {
   image(img, 0, 0, width, height);
-  ellipse(mouseX, mouseY, 20, 20);
   Food.drag();
   Food.draw();
-  //fill(0);
-  //ellipse(0,0,20,20);
 }
