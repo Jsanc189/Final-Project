@@ -57,8 +57,6 @@ class Food {
     }
   }
   static draw(){
-    fill(0);
-    text("hello", 30, 30);
     for(var i = 0; i < Food.instances.length; i++){
       fill(255);
       if(i === Food.dragHandler.hoverIndex){
