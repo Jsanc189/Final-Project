@@ -25,6 +25,15 @@ function setup() {
   });
   //Draw the loaded image onto the canvas
   image(img, 0, 0, width, height);
+  var f1 = new Food("test1", 0, 0, 200, 200, 20);
+  var f1 = new Food("test2", 0, 0, 260, 180, 45);
 }
 
-function draw() {}
+function draw() {
+  image(img, 0, 0, width, height);
+  ellipse(mouseX, mouseY, 20, 20);
+  Food.drag();
+  Food.draw();
+  //fill(0);
+  //ellipse(0,0,20,20);
+}
