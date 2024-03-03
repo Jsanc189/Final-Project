@@ -16,7 +16,7 @@ class Food {
   static CombosLib = null;
 
 
-  constructor(name, x, y, r, allCombos, ingredients = []) {
+  constructor(name, x, y, r, allCombos, ingredients = [], type = "food") {
     this.name = name; // name of food (string)
     this.ingredients = ingredients; // list of ingredients that make up food (List<Food>[])
     this.possibleCombos = {};
@@ -29,6 +29,7 @@ class Food {
     this.x = x;
     this.y = y;
     this.r = r;
+    this.type = type;
     Food.instances.push(this);
   }
   getIngredients() {
@@ -47,7 +48,7 @@ class Food {
     var Outcomes = [];
     for(var i = 0; i < Food.instances.length; i++){
       if(i !== index){
-        if(dist(Food.instances[index].x, Food.instances[index].y, Food.instances[i].x, Food.instances[i].y) < Food.instances[i].r + Food.instances[index].r){
+        if(dist(Food.instances[index].x, Food.instances[index].y, Food.instances[i].x, Food.instances[i].y) < Food.instances[i].r + Food.instances[index].r && Food.instances[index].type !== "icon" && Food.instances[i].type !== "icon"){
           var Outcome1 = Food.instances[i].getOutcome(Food.instances[index].name);
           var Outcome2 = Food.instances[index].getOutcome(Food.instances[i].name);
           console.log(Outcome1);
@@ -66,11 +67,19 @@ class Food {
       var i1 = Food.instances[index];
       var i2 = Food.instances[picked.i];
       if(picked.i > index){
-        Food.instances.splice(picked.i, 1);
-        Food.instances.splice(index, 1);
+        if(Food.instances[picked.i] && Food.instances[picked.i].type === "food"){
+          Food.instances.splice(picked.i, 1);
+        }
+        if(Food.instances[index] && Food.instances[index].type === "food"){
+          Food.instances.splice(index, 1);
+        }
       } else{
-        Food.instances.splice(index, 1);
-        Food.instances.splice(picked.i, 1);
+        if(Food.instances[index] && Food.instances[index].type === "food"){
+          Food.instances.splice(index, 1);
+        }
+        if(Food.instances[picked.i] && Food.instances[picked.i].type === "food"){
+          Food.instances.splice(picked.i, 1);
+        }
       }
       var I = new Food(picked.name, i1.x, i1.y, i1.r, Food.CombosLib, [i1, i2]);
       console.log(I);
@@ -79,13 +88,21 @@ class Food {
   static drag(){
     Food.dragHandler.hoverIndex = -1;
     for(var i = 0; i < Food.instances.length; i++){
-      if(dist(mouseX, mouseY, Food.instances[i].x, Food.instances[i].y) < Food.instances[i].r){
+      if(dist(mouseX, mouseY, Food.instances[i].x, Food.instances[i].y) < Food.instances[i].r && Food.instances[i].type !== "tool"){
         Food.dragHandler.hoverIndex = i;
       }
     }
-    if(mouseIsPressed && Food.dragHandler.hoverIndex !== -1 && Food.dragHandler.dragging === false){
+    if(mouseIsPressed && Food.dragHandler.hoverIndex !== -1 && Food.dragHandler.dragging === false && Food.instances[Food.dragHandler.hoverIndex].type === "food"){
       Food.dragHandler.dragging = true;
       Shift(Food.instances, Food.dragHandler.hoverIndex);
+      Food.dragHandler.xOffset = Food.instances[Food.instances.length-1].x - mouseX;
+      Food.dragHandler.yOffset = Food.instances[Food.instances.length-1].y - mouseY;
+    }
+    else if(mouseIsPressed && Food.dragHandler.hoverIndex !== -1 && Food.dragHandler.dragging === false && Food.instances[Food.dragHandler.hoverIndex].type === "icon"){
+      Food.dragHandler.dragging = true;
+      //Shift(Food.instances, Food.dragHandler.hoverIndex);
+      var li = Food.instances[Food.dragHandler.hoverIndex];
+      var tmp = new Food(li.name, li.x, li.y, li.r, Food.CombosLib, []);
       Food.dragHandler.xOffset = Food.instances[Food.instances.length-1].x - mouseX;
       Food.dragHandler.yOffset = Food.instances[Food.instances.length-1].y - mouseY;
     }
