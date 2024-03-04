@@ -1,3 +1,15 @@
+let cheeseImg, cheesyDoughImg, doughImg, mushroomImg, pepperoniImg, pineappleImg, superMushroomImg;
+
+function preload(){
+  cheeseImg = loadImage('cheeseBlock.png');
+  cheesyDoughImg = loadImage('cheesyDough.png');
+  doughImg = loadImage('dough.png');
+  mushroomImg = loadImage('mushrooms.png');
+  pepperoniImg = loadImage('pepperoni.png');
+  pineappleImg = loadImage('pineapple.png');
+  superMushroomImg = loadImage('superMushroom.png');
+}
+
 var Shift = function(arr, i){
   var tmp = arr[i];
   arr.splice(i,1);
