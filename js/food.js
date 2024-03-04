@@ -1,13 +1,13 @@
 let cheeseImg, cheesyDoughImg, doughImg, mushroomImg, pepperoniImg, pineappleImg, superMushroomImg;
 
 function preload(){
-  cheeseImg = loadImage('cheeseBlock.png');
-  cheesyDoughImg = loadImage('cheesyDough.png');
-  doughImg = loadImage('dough.png');
-  mushroomImg = loadImage('mushrooms.png');
-  pepperoniImg = loadImage('pepperoni.png');
-  pineappleImg = loadImage('pineapple.png');
-  superMushroomImg = loadImage('superMushroom.png');
+  cheeseImg = loadImage('img/cheeseBlock.png');
+  cheesyDoughImg = loadImage('img/cheesyDough.png');
+  doughImg = loadImage('img/dough.png');
+  mushroomImg = loadImage('img/mushrooms.png');
+  pepperoniImg = loadImage('img/pepperoni.png');
+  pineappleImg = loadImage('img/pineapple.png');
+  superMushroomImg = loadImage('img/superMushroom.png');
 }
 
 var Shift = function(arr, i){

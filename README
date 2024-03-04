@@ -1,5 +1,43 @@
-Aidan 2/24/24
-Hello World, William was here 2/25/24
-So was Jackie, 2/25/24
-Lyssa got here a tad bit late 2/26/24
-Julian got here even later 2/27/24
+Team: Jackie Sanchez, Lyssa Li, William Chen, Julian Lara, Aidan Sterling
+Final Project: Sussy Tomato Pizzaria
+
+---------------------------
+Description
+In this project, the goal is to have the user make different types of food typically found in a pizzeria.
+Utilizing the p5.js library, an environment is generated utilizing png files while also utilizing classes
+to differentiate between different types of ingredients and tools.  The sketch.js produces the environment
+fot a user to interact with these different objects to make pizza or other types of food, depending on the
+allotted recipes read in through the food.json.  
+
+-----------------------------
+FILES
+food.js
+Creates a food object based on the json file read in through the sketch.js.  Each object has a list of other
+objects it can iteract with to make other food objects, and also draws each object.
+
+food.json
+This file contains all the food and tool objects and their combinations with other objects to create new
+food items.
+
+ingredientGroup.js
+This file allows for large combinations of food to be reduced down to one new food item
+despite having a large list of ingredients.
+
+oven.js
+This file will process multiple things put into the oven and hold them into a list for
+later processing from ingredientGroup.js
+
+sketch.js
+This file is the canvas that contains all the visual and interactibility for the user 
+to see.
+
+index.html
+This file includes the p5.js libraries needed for the program as well as the placement of the canvas into the webpage.
+
+
+INSTRUCTIONS
+This set of programs is intended to run using JavaScript utilizing the p5.js library.  The
+user can click and drag items to other items in the scene to make different combinations.  
+These combinations happen with other food items or tool items.
+
+------------------------------

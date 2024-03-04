@@ -36,7 +36,7 @@ function setup() {
   var f9 = new Food("pizza", 680, 1200, 30, FOODLIB, [], "icon");
   var f10 = new Food("pizza-dough", 740, 1200, 30, FOODLIB, [], "icon");
   var f12 = new Food("tomato", 800, 1200, 30, FOODLIB, [], "icon");
-  var f13 = new Food("bender", 1464, 816, 45, FOODLIB, [], "tool");
+  var f13 = new Food("blender", 1464, 816, 45, FOODLIB, [], "tool");
   var f14 = new Food("knife", 1464, 1020, 30, FOODLIB, [], "tool");
   var f15 = new Food("oven", 560, 400, 60, FOODLIB, [], "tool");
 }
