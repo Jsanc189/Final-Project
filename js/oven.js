@@ -11,6 +11,8 @@ class oven {
         this.inOven.push(food);
     }
 
+    // remove from item
+
     /**
      * calculates ingredients and returns a string name of the product
      * @returns {String} name of final food

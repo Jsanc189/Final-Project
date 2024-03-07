@@ -1,86 +1,102 @@
 {
-    "bacon" : {
-        "img" : "",
-        "plus" : {
-        }
-    },
-    "cheese" : {
-        "img" : "img/cheeseBlock.png",
-        "plus" : {
-            "dough" : "cheesy-dough",
-            "cheesier-dough" : "cheese",
-            "cheesy-dough" : "cheesier-dough"
-        }
-    },
-    "cheesier-dough" : {
-        "img" : "",
-        "plus" : {
-        }
-    },
-    "cheesy-dough" : {
-        "img" : "img/cheesyDough.png",
-        "plus" : {
-        }
-    },
-    "dough" : {
-        "img" : "img/dough.png",
-        "plus" : {
-            "goop" : "pizza-dough",
-            "shredded cheese" : "cheesy-dough"
-        }
-    },
-    "goop" : {
-        "img" : "",
-        "plus" : {
-        }
-    },
-    "mushroom" : {
-        "img" : "",
-        "plus" : {
-        }
-    },
-    "pepperoni" : {
-        "img" : "img/pepperoni.png",
-        "plus" : {
-        }
-    },
-    "pizza" : {
-        "img" : "",
-        "plus" : {
-        }
-    },
-    "pizza-dough" : {
-        "img" : "",
-        "plus" : {
-            "goop": "pizza"
-        }
-    },
-    "tomato" : {
-        "img" : "",
-        "plus" : {
+    "ingredients" : {
+        "bacon" : {
+            "img" : "",
+            "plus" : {
+                "bacon" : "pepperoni"
+            }
+        },
+        "cheese" : {
+            "img" : "./img/cheeseBlock.png",
+            "plus" : {
+                "dough" : "cheesy-dough",
+                "cheesier-dough" : "cheese",
+                "cheesy-dough" : "cheesier-dough"
+            }
+        },
+        "cheesier-dough" : {
+            "img" : "",
+            "plus" : {
+            }
+        },
+        "cheesy-dough" : {
+            "img" : "./img/cheesyDough.png",
+            "plus" : {
+            }
+        },
+        "dough" : {
+            "img" : "./img/dough.png",
+            "plus" : {
+                "goop" : "pizza-dough",
+                "shredded cheese" : "cheesy-dough"
+            }
+        },
+        "goop" : {
+            "img" : "",
+            "plus" : {
+            }
+        },
+        "mushroom" : {
+            "img" : "./img/mushrooms.png",
+            "plus" : {
+                "mushroom" : "super-mushroom"
+            }
+        },
+        "pepperoni" : {
+            "img" : "./img/pepperoni.png",
+            "plus" : {
+            }
+        },
+        "pinnaple" : {
+            "img" : "./img/pineapple.png",
+            "plus" : {
+            }
+        },
+        "pizza-dough" : {
+            "img" : "",
+            "plus" : {
+                "goop": "pizza"
+            }
+        },
+        "super-mushroom" : {
+            "img": "./img/superMushroom.png",
+            "plus" : {
+                "mushroom" : "goop"
+            }
+        },
+        "tomato" : {
+            "img" : "",
+            "plus" : {
+            }
         }
     },
 
-    "blender" : {
-        "plus" : {
-            "pepperoni" : "bacon",
-            "pizza" : "dough",
-            "mushroom" : "goop",
-            "tomato" : "goop"
-        }
-    },
-    "knife" : {
-        "plus" : {
-            "pepperoni" : "bacon",
-            "pizza" : "cheese-sticks",
-            "tomato" : "goop"
-        }
-    },
-    "oven" : {
-        "plus" : {
-            "cheese" : "goop",
-            "cheesier-dough" :  "cheese-sticks",
-            "cheesy-dough" : "pizza"
+    "tools" : {
+        "blender" : {
+            "plus" : {
+                "pepperoni" : "bacon",
+                "pizza" : "dough",
+                "mushroom" : "goop",
+                "tomato" : "goop",
+                "super-mushroom" : "mushroom"
+            }
+        },
+        "knife" : {
+            "plus" : {
+                "cheese" : "pinapple",
+                "pepperoni" : "bacon",
+                "pizza" : "cheese-sticks",
+                "tomato" : "goop",
+                "super-mushroom" : "mushroom"
+            }
+        },
+        "oven" : {
+            "plus" : {
+                "cheese" : "goop",
+                "cheesier-dough" :  "cheese-sticks",
+                "cheesy-dough" : "pizza",
+                "mushroom" : "super-mushroom"
+            }
         }
     }
 }
