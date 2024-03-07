@@ -7,13 +7,17 @@ canvas{
 }
 
 /* Center the canvas element on the page*/
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Remove default margin and padding */
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
 
 #canvas-container {
-    width: 1600px;
-    height: 1299px;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

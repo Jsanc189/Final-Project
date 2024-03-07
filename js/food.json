@@ -5,7 +5,7 @@
         }
     },
     "cheese" : {
-        "img" : "path/to/img",
+        "img" : "img/cheeseBlock.png",
         "plus" : {
             "dough" : "cheesy-dough",
             "cheesier-dough" : "cheese",
@@ -18,12 +18,12 @@
         }
     },
     "cheesy-dough" : {
-        "img" : "",
+        "img" : "img/cheesyDough.png",
         "plus" : {
         }
     },
     "dough" : {
-        "img" : "",
+        "img" : "img/dough.png",
         "plus" : {
             "goop" : "pizza-dough",
             "shredded cheese" : "cheesy-dough"
@@ -40,7 +40,7 @@
         }
     },
     "pepperoni" : {
-        "img" : "",
+        "img" : "img/pepperoni.png",
         "plus" : {
         }
     },
