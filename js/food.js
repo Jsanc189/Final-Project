@@ -16,15 +16,15 @@ class Food {
   static CombosLib = null;
 
 
-  constructor(name, x, y, r, allCombos, ingredients = [], type = "food") {
+  constructor(name, x, y, r, allCombos, ingredients = [], type = "food", category = "ingredients") {
     this.name = name; // name of food (string)
     this.ingredients = ingredients; // list of ingredients that make up food (List<Food>[])
     this.possibleCombos = {};
     if(!Food.CombosLib){
       Food.CombosLib = allCombos;
     }
-    if(allCombos[name]){
-      this.possibleCombos = allCombos[name].plus; // dictionary of combinations for the food item, with entries being the result (Dict {})
+    if(allCombos[category][name]){
+      this.possibleCombos = allCombos[category][name].plus; // dictionary of combinations for the food item, with entries being the result (Dict {})
     }
     this.x = x;
     this.y = y;
