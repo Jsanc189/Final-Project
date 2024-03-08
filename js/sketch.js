@@ -5,7 +5,7 @@ let FOODLIB;
 
 function preload() {
   //load image
-  img = loadImage("background.png");
+  img = loadImage("img/brick_background.png");
 
   let xhreq = new XMLHttpRequest();
   xhreq.open("GET", "./js/food.json", false);
