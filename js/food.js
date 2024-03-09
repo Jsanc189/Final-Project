@@ -14,23 +14,68 @@ class Food {
   };
   static instances = [];
   static CombosLib = null;
+  static Xbase = 0;
+  static Ybase = 0;
+  static Widthbase = 0;
+  static Heightbase = 0;
 
+  static setBase(Xbase, Ybase, Widthbase, Heightbase){
+    Food.Xbase = Xbase;
+    Food.Ybase = Ybase;
+    Food.Widthbase = Widthbase;
+    Food.Heightbase = Heightbase;
+  }
 
-  constructor(name, x, y, r, allCombos, ingredients = [], type = "food") {
+  constructor(name, x, y, r, allCombos, ingredients = [], type = "food", category = "ingredients", Xbase, Ybase, Widthbase, Heightbase) {
     this.name = name; // name of food (string)
     this.ingredients = ingredients; // list of ingredients that make up food (List<Food>[])
     this.possibleCombos = {};
+    this.img = "";
+    this.Img = null;
+    //Food.Xbase = Xbase;
+    //Food.Ybase = Ybase;
+    //Food.Widthbase = Widthbase;
+    //Food.Heightbase = Heightbase;
     if(!Food.CombosLib){
       Food.CombosLib = allCombos;
     }
-    if(allCombos[name]){
-      this.possibleCombos = allCombos[name].plus; // dictionary of combinations for the food item, with entries being the result (Dict {})
+    if(allCombos[category][name]){
+      this.possibleCombos = allCombos[category][name].plus;
+      this.img = allCombos[category][name].img // dictionary of combinations for the food item, with entries being the result (Dict {})
+    }
+    if(this.img !== ""){
+      this.Img = loadImage(this.img);
+      console.log("loading: " + this.img);
     }
     this.x = x;
     this.y = y;
     this.r = r;
     this.type = type;
     Food.instances.push(this);
+  }
+  X() {
+    if(this.type === "food"){
+      return Food.Xbase + this.x;
+    }
+    else if(this.type === "tool"){
+      return Food.Xbase + Food.Widthbase*this.x;
+    }
+    else if(this.type === "icon"){
+      return Food.Xbase + this.x;
+    }
+    return 0;
+  }
+  Y() {
+    if(this.type === "food"){
+      return Food.Ybase + this.y;
+    }
+    else if(this.type === "tool"){
+      return Food.Ybase + Food.Heightbase*this.y;
+    }
+    else if(this.type === "icon"){
+      return Food.Ybase + Food.Heightbase - this.y;
+    }
+    return 0;
   }
   getIngredients() {
     // returns the list of ingredients that make up the food item, if the food item is itself an ingredient, returns itself.
@@ -48,7 +93,7 @@ class Food {
     var Outcomes = [];
     for(var i = 0; i < Food.instances.length; i++){
       if(i !== index){
-        if(dist(Food.instances[index].x, Food.instances[index].y, Food.instances[i].x, Food.instances[i].y) < Food.instances[i].r + Food.instances[index].r && Food.instances[index].type !== "icon" && Food.instances[i].type !== "icon"){
+        if(dist(Food.instances[index].X(), Food.instances[index].Y(), Food.instances[i].X(), Food.instances[i].Y()) < Food.instances[i].r + Food.instances[index].r && Food.instances[index].type !== "icon" && Food.instances[i].type !== "icon"){
           var Outcome1 = Food.instances[i].getOutcome(Food.instances[index].name);
           var Outcome2 = Food.instances[index].getOutcome(Food.instances[i].name);
           console.log(Outcome1);
@@ -81,30 +126,32 @@ class Food {
           Food.instances.splice(picked.i, 1);
         }
       }
-      var I = new Food(picked.name, i1.x, i1.y, i1.r, Food.CombosLib, [i1, i2]);
+      var I = new Food(picked.name, i1.X(), i1.Y(), i1.r, Food.CombosLib, [i1, i2], "food", "ingredients", Food.Xbase, Food.Ybase, Food.Widthbase, Food.Heightbase);
       console.log(I);
     }
   }
   static drag(){
     Food.dragHandler.hoverIndex = -1;
     for(var i = 0; i < Food.instances.length; i++){
-      if(dist(mouseX, mouseY, Food.instances[i].x, Food.instances[i].y) < Food.instances[i].r && Food.instances[i].type !== "tool"){
+      if(dist(mouseX, mouseY, Food.instances[i].X(), Food.instances[i].Y()) < Food.instances[i].r && Food.instances[i].type !== "tool"){
         Food.dragHandler.hoverIndex = i;
       }
     }
     if(mouseIsPressed && Food.dragHandler.hoverIndex !== -1 && Food.dragHandler.dragging === false && Food.instances[Food.dragHandler.hoverIndex].type === "food"){
       Food.dragHandler.dragging = true;
       Shift(Food.instances, Food.dragHandler.hoverIndex);
-      Food.dragHandler.xOffset = Food.instances[Food.instances.length-1].x - mouseX;
-      Food.dragHandler.yOffset = Food.instances[Food.instances.length-1].y - mouseY;
+      Food.dragHandler.xOffset = Food.instances[Food.instances.length-1].X() - mouseX;
+      Food.dragHandler.yOffset = Food.instances[Food.instances.length-1].Y() - mouseY;
+      console.log(Food.dragHandler.xOffset + ", " + Food.dragHandler.yOffset);
     }
     else if(mouseIsPressed && Food.dragHandler.hoverIndex !== -1 && Food.dragHandler.dragging === false && Food.instances[Food.dragHandler.hoverIndex].type === "icon"){
       Food.dragHandler.dragging = true;
       //Shift(Food.instances, Food.dragHandler.hoverIndex);
       var li = Food.instances[Food.dragHandler.hoverIndex];
-      var tmp = new Food(li.name, li.x, li.y, li.r, Food.CombosLib, []);
-      Food.dragHandler.xOffset = Food.instances[Food.instances.length-1].x - mouseX;
-      Food.dragHandler.yOffset = Food.instances[Food.instances.length-1].y - mouseY;
+      var tmp = new Food(li.name, li.X(), li.Y(), li.r, Food.CombosLib, [], "food", "ingredients", Food.Xbase, Food.Ybase, Food.Widthbase, Food.Heightbase);
+      Food.dragHandler.xOffset = Food.instances[Food.instances.length-1].X() - mouseX;
+      Food.dragHandler.yOffset = Food.instances[Food.instances.length-1].Y() - mouseY;
+      console.log(Food.dragHandler.xOffset + ", " + Food.dragHandler.yOffset);
     }
     if(!mouseIsPressed && Food.dragHandler.dragging){
       Food.merge(Food.instances.length-1);
@@ -127,10 +174,13 @@ class Food {
       if(Food.dragHandler.dragging && i === Food.instances.length - 1){
         fill(200);
       }
-      ellipse(Food.instances[i].x, Food.instances[i].y, Food.instances[i].r*2, Food.instances[i].r*2);
+      ellipse(Food.instances[i].X(), Food.instances[i].Y(), Food.instances[i].r*2, Food.instances[i].r*2);
       fill(0);
-      text(Food.instances[i].name, Food.instances[i].x, Food.instances[i].y);
-  
+      text(Food.instances[i].name, Food.instances[i].X(), Food.instances[i].Y());
+      if(Food.instances[i].Img){
+        image(Food.instances[i].Img, Food.instances[i].X(), Food.instances[i].Y(), 50, 50);
+        //ellipse(x + Food.instances[i].x, y + height - Food.instances[i].y, 5, 5);
+      }
     }
   }
 }
