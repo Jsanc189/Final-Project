@@ -38,7 +38,7 @@ $(document).ready(function(){
 
     function loadGrammar(){
         var grammar = tracery.createGrammar(words["origin"]);
-        $('#output').html("<div>"+grammar.flatten('#rating#')+"</div>");
+        //$('#output').html("<div>"+grammar.flatten('#rating#')+"</div>");
         var generatedText = grammar.flatten('#rating#');
         console.log("Generated Text:", generatedText);
         console.log("finished loading!");
