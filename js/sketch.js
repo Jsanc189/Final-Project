@@ -40,9 +40,9 @@ function setup() {
 
 
   
-  var f13 = new Food("blender", 450, 500, 45, FOODLIB, [], "tool", "tools", 0, 0, width, height);
+  var f13 = new Food("blender", 400, 500, 45, FOODLIB, [], "tool", "tools", 0, 0, width, height);
   var f14 = new Food("knife", 500, 500, 30, FOODLIB, [], "tool", "tools", 0, 0, width, height);
-  var f15 = new Food("oven", 550, 500, 60, FOODLIB, [], "tool", "tools", 0, 0, width, height);
+  var f15 = new Food("oven", 600, 500, 60, FOODLIB, [], "tool", "tools", 0, 0, width, height);
 }
 
 function draw() {
