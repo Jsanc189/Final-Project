@@ -18,12 +18,14 @@ class Food {
   static Ybase = 0;
   static Widthbase = 0;
   static Heightbase = 0;
+  static Scale;
 
-  static setBase(Xbase, Ybase, Widthbase, Heightbase){
+  static setBase(Xbase, Ybase, Widthbase, Heightbase, Scale){
     Food.Xbase = Xbase;
     Food.Ybase = Ybase;
     Food.Widthbase = Widthbase;
     Food.Heightbase = Heightbase;
+    Food.Scale = Scale;
   }
 
   constructor(name, x, y, r, allCombos, ingredients = [], type = "food", category = "ingredients", Xbase, Ybase, Widthbase, Heightbase) {
@@ -54,28 +56,10 @@ class Food {
     Food.instances.push(this);
   }
   X() {
-    if(this.type === "food"){
-      return Food.Xbase + this.x;
-    }
-    else if(this.type === "tool"){
-      return Food.Xbase + Food.Widthbase*this.x;
-    }
-    else if(this.type === "icon"){
-      return Food.Xbase + this.x;
-    }
-    return 0;
+    return Food.Xbase + (this.x*Food.Widthbase)/Food.Scale;
   }
   Y() {
-    if(this.type === "food"){
-      return Food.Ybase + this.y;
-    }
-    else if(this.type === "tool"){
-      return Food.Ybase + Food.Heightbase*this.y;
-    }
-    else if(this.type === "icon"){
-      return Food.Ybase + Food.Heightbase - this.y;
-    }
-    return 0;
+    return Food.Ybase + (this.y*Food.Heightbase)/Food.Scale;
   }
   getIngredients() {
     // returns the list of ingredients that make up the food item, if the food item is itself an ingredient, returns itself.
@@ -174,11 +158,11 @@ class Food {
       if(Food.dragHandler.dragging && i === Food.instances.length - 1){
         fill(200);
       }
-      ellipse(Food.instances[i].X(), Food.instances[i].Y(), Food.instances[i].r*2, Food.instances[i].r*2);
+      ellipse(Food.instances[i].X(), Food.instances[i].Y(), (Food.instances[i].r*2*Food.Heightbase)/Food.Scale, (Food.instances[i].r*2*Food.Heightbase)/Food.Scale);
       fill(0);
       text(Food.instances[i].name, Food.instances[i].X(), Food.instances[i].Y());
       if(Food.instances[i].Img){
-        image(Food.instances[i].Img, Food.instances[i].X(), Food.instances[i].Y(), 50, 50);
+        image(Food.instances[i].Img, Food.instances[i].X(), Food.instances[i].Y(), (Food.instances[i].r*2*Food.Heightbase)/Food.Scale, (Food.instances[i].r*2*Food.Heightbase)/Food.Scale);
         //ellipse(x + Food.instances[i].x, y + height - Food.instances[i].y, 5, 5);
       }
     }
