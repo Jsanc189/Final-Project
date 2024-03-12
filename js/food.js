@@ -20,6 +20,23 @@ class Food {
   static Heightbase = 0;
   static Scale;
 
+
+
+  static images = {};
+  static LoadImages(data){
+    for(const entry in data.ingredients){
+      var Img;
+      if(data.ingredients[entry].img !== ""){
+        Img = loadImage(data.ingredients[entry].img);
+        console.log(data.ingredients[entry]);
+      }
+      Food.images[data.ingredients[entry].img] = Img;
+    }
+    console.log(Food.images);
+  }
+
+
+
   static setBase(Xbase, Ybase, Widthbase, Heightbase, Scale){
     Food.Xbase = Xbase;
     Food.Ybase = Ybase;
@@ -46,7 +63,8 @@ class Food {
       this.img = allCombos[category][name].img // dictionary of combinations for the food item, with entries being the result (Dict {})
     }
     if(this.img !== ""){
-      this.Img = loadImage(this.img);
+      //this.Img = loadImage(this.img);
+      this.Img = Food.images[this.img];
       console.log("loading: " + this.img);
     }
     this.x = x;
