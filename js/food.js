@@ -28,11 +28,9 @@ class Food {
       var Img;
       if(data.ingredients[entry].img !== ""){
         Img = loadImage(data.ingredients[entry].img);
-        console.log(data.ingredients[entry]);
       }
       Food.images[data.ingredients[entry].img] = Img;
     }
-    console.log(Food.images);
   }
 
 
