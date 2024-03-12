@@ -79,6 +79,15 @@ class Food {
     if (!(item in this.possibleCombos)) return null;
     return this.possibleCombos[item]; // if a possible combo exists, returns a string of the name
   }
+  Over(px, py, img, x, y, w, h){
+    if(img){
+        if(alpha(img.get(((px-x+w/2)/w)*img.width, ((py-y+h/2)/w)*img.height)) > 0){
+        return true;
+      }
+    }
+    return false;
+
+  }
   static merge(index){
     var Outcomes = [];
     for(var i = 0; i < Food.instances.length; i++){
@@ -127,7 +136,7 @@ class Food {
   static drag(){
     Food.dragHandler.hoverIndex = -1;
     for(var i = 0; i < Food.instances.length; i++){
-      if(dist(mouseX, mouseY, Food.instances[i].X(), Food.instances[i].Y()) < (Food.instances[i].r*Food.Heightbase)/Food.Scale && Food.instances[i].type !== "tool"){
+      if((Food.instances[i].img && Food.instances[i].Over(mouseX, mouseY, Food.instances[i].Img, Food.instances[i].X(), Food.instances[i].Y(), (Food.instances[i].r*2*Food.Heightbase)/Food.Scale, (Food.instances[i].r*2*Food.Heightbase)/Food.Scale)) || (!Food.instances[i].img && dist(mouseX, mouseY, Food.instances[i].X(), Food.instances[i].Y()) < (Food.instances[i].r*Food.Heightbase)/Food.Scale) && Food.instances[i].type !== "tool"){
         Food.dragHandler.hoverIndex = i;
       }
     }
@@ -173,9 +182,12 @@ class Food {
       if(Food.dragHandler.dragging && i === Food.instances.length - 1){
         fill(200);
       }
-      ellipse(Food.instances[i].X(), Food.instances[i].Y(), (Food.instances[i].r*2*Food.Heightbase)/Food.Scale, (Food.instances[i].r*2*Food.Heightbase)/Food.Scale);
-      fill(0);
-      text(Food.instances[i].name, Food.instances[i].X(), Food.instances[i].Y());
+      //fill(Food.instances[i].Over(mouseX, mouseY, Food.instances[i].Img, Food.instances[i].X(), Food.instances[i].Y(), (Food.instances[i].r*2*Food.Heightbase)/Food.Scale, (Food.instances[i].r*2*Food.Heightbase)/Food.Scale));
+      if(!Food.instances[i].Img || Food.instances[i].type === "icon"){
+        ellipse(Food.instances[i].X(), Food.instances[i].Y(), (Food.instances[i].r*2*Food.Heightbase)/Food.Scale, (Food.instances[i].r*2*Food.Heightbase)/Food.Scale);
+        fill(0);
+        text(Food.instances[i].name, Food.instances[i].X(), Food.instances[i].Y());
+      }
       if(Food.instances[i].Img){
         image(Food.instances[i].Img, Food.instances[i].X(), Food.instances[i].Y(), (Food.instances[i].r*2*Food.Heightbase)/Food.Scale, (Food.instances[i].r*2*Food.Heightbase)/Food.Scale);
         //ellipse(x + Food.instances[i].x, y + height - Food.instances[i].y, 5, 5);
