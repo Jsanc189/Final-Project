@@ -7,7 +7,8 @@ let blender;
 let knife;
 let trash;
 let pres_table;
-// let yes = true
+let yes = true;
+let my_text;
 
 let grammar; //stores the text for reviews of food
 
@@ -31,6 +32,7 @@ function preload() {
 
   Food.LoadImages(FOODLIB);
 
+  
 }
 
 function setup() {
@@ -42,6 +44,10 @@ function setup() {
     console.log("Resizing...");
     resizeCanvas(canvasContainer.width(), canvasContainer.height());
   });
+
+  //text for debugging
+  //my_text = loadGeneratedText("pizza", ["cheese", "goop", "pepperoni", "mushroom"]).Text;
+
   //Draw the loaded image onto the canvas
   //image(img, 0, 0, width, height);
   Food.setBase(0, 0, width, height);
@@ -102,12 +108,6 @@ function draw() {
   Food.drag();
   Food.draw();
 
-  // if(yes == true){
-  //   for(let i = 0; i < 4; i++){ 
-  //     loadGeneratedText("pizza", ["cheese", "goop", "pepperoni", "mushroom"]);
-  //   }
-  //   yes = false;
-  // }
 
 }
 
@@ -155,5 +155,38 @@ function loadGeneratedText(food, toppings) {
     console.log("Generated Text:", generatedText);
     console.log("finished loading!");
 
-    return(generatedText);
+    return{
+      Text: generatedText
+    };
+}
+
+function review(reviewText){
+  let maxWidth = width/4;
+  let y = height/14;
+  let x = width/6;
+  let fontSize = width/40;
+  textSize(fontSize);
+
+  // Split the text into words
+  let words = reviewText.split(' ');
+  let line = '';
+ 
+ for (let i = 0; i < words.length; i++) {
+   let testLine = line + words[i] + ' ';
+   let testWidth = textWidth(testLine);
+   if (testWidth > maxWidth) {
+     text(line, x, y); // Draw the line
+     line = words[i] + ' '; // Start a new line
+     y += fontSize; // Move to the next line
+   } else {
+     line = testLine;
+   }
+ }
+  //text(reviewText, 600, 300);
+
+  setTimeout(function(){
+    //clear();
+
+    
+  })
 }
