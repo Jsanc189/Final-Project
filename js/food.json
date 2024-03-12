@@ -68,6 +68,11 @@
             "img" : "",
             "plus" : {
             }
+        },
+        "pizza" : {
+            "img" : "./img/pizza.PNG",
+            "plus" : {
+            }
         }
     },
 
