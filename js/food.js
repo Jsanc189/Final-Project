@@ -1,3 +1,87 @@
+var OnLine = function(x,y,x1,y1,x2,y2){
+  return (x - x1)*(x2 - x1) + (y - y1)*(y2 - y1) > 0 && (x - x2)*(x1 - x2) + (y - y2)*(y1 - y2) > 0;
+}
+var lineS = function(x1,y1,x2,y2,x3,y3,x4,y4){
+  if(abs(x1 - x3) < 0.0000001 && abs(y1 - y3) < 0.0000001 && abs(x2 - x4) < 0.0000001 && abs(y2 - y4) < 0.0000001){
+    return {x:x1,y:y1,t: true};
+  }
+  if(abs(x1 - x4) < 0.0000001 && abs(y1 - y4) < 0.0000001 && abs(x2 - x3) < 0.0000001 && abs(y2 - y3) < 0.0000001){
+    return {x:x1,y:y1,t: true};
+  }
+  var ua0 = ((y4 - y3)*(x2 - x1) - (x4 - x3)*(y2 - y1));
+  var ua;
+  if(ua0 !== 0){
+    ua = ((x4 - x3)*(y1 - y3) - (y4 - y3)*(x1 - x3))/ua0;
+  } else{
+    return {x:0,y:0,t: false};
+  }
+  var x = x1 + ua*(x2-x1);
+  var y = y1 + ua*(y2-y1);
+  if(!x || !y){
+      x = 0;
+      y = 0;
+  }
+  return {x:x,y:y,t: OnLine(x, y, x1, y1, x2, y2) && OnLine(x, y, x3 ,y3 ,x4 ,y4)};
+};
+var lineC = function(x1,y1,x2,y2,x3,y3,r){
+  var cx = x2-x1;
+  var cy = y2-y1;
+  var d1 = dist(x1,y1,x2,y2);
+  //line(x3, y3, x3 + cy, y3 - cx);
+  //x=sqrt(r^2-y^2)
+  var p = lineS2(x1,y1,x2,y2, x3, y3, x3 + cy, y3 - cx);
+  var d = dist(x3, y3, p.x, p.y);
+  var s = sqrt(abs((r*r)-(d*d)));
+  var t = (p.t && d <= r);
+  var p1;
+  var p2;
+  if(d1 === 0){
+    p1 = {x:p.x, y: p.y}
+    p2 = {x:p.x, y: p.y}
+  } else{
+    p1 = {x:p.x - (cx/d1)*s, y: p.y - (cy/d1)*s}
+    p2 = {x:p.x + (cx/d1)*s, y: p.y + (cy/d1)*s}
+  }
+  //fill(0);
+  //ellipse(p1.x, p1.y, 2, 2);
+  //fill(255, 0, 0);
+  //ellipse(p2.x, p2.y, 2, 2);
+  var t2 = OnLine(p1.x, p1.y, x1,y1,x2,y2);
+  return {x1: p1.x, y1: p1.y, x2: p2.x, y2: p2.y, t: t2 && (t || dist(x2, y2, x3, y3) <= r)};
+}
+var inside = function(x, y, r, shape){
+  beginShape();
+  for(var i = 0; i < shape.length; i++){
+    vertex(shape[i].x, shape[i].y);
+  }
+  if(shape.length > 0){
+    vertex(shape[0].x, shape[0].y);
+  }
+  endShape();
+  var count = 0;
+  for(var i = 0; i < shape.length; i++){
+    var ip = i + 1;
+    if(i >= shape.length - 1){
+      ip = 0;
+    }
+    if(lineS(x, y, x, 99999999, shape[i].x, shape[i].y, shape[ip].x, shape[ip].y).t){
+      count++;
+    }
+    if(lineC(shape[i].x, shape[i].y, shape[ip].x, shape[ip].y, x, y, r).t || dist(shape[i].x, shape[i].y, x, y) < r){
+      return true;
+    }
+    line(shape[i].x, shape[i].y, shape[ip].x, shape[ip].y);
+  }
+  if(count%2 !== 0){
+    return true;
+  }
+  
+  
+  
+  ellipse(x, y, r*2, r*2);
+  return false;
+}
+
 var Shift = function(arr, i){
   var tmp = arr[i];
   arr.splice(i,1);
@@ -28,11 +112,9 @@ class Food {
       var Img;
       if(data.ingredients[entry].img !== ""){
         Img = loadImage(data.ingredients[entry].img);
-        console.log(data.ingredients[entry]);
       }
       Food.images[data.ingredients[entry].img] = Img;
     }
-    console.log(Food.images);
   }
 
 
