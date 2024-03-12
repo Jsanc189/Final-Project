@@ -1,7 +1,7 @@
 {
     "ingredients" : {
         "bacon" : {
-            "img" : "",
+            "img" : "./img/bacon.PNG",
             "plus" : {
                 "bacon" : "pepperoni"
             }
@@ -15,7 +15,7 @@
             }
         },
         "cheesier-dough" : {
-            "img" : "",
+            "img" : "./img/cheesierDough.PNG",
             "plus" : {
             }
         },
@@ -32,7 +32,7 @@
             }
         },
         "goop" : {
-            "img" : "",
+            "img" : "./img/goop.PNG",
             "plus" : {
             }
         },
@@ -53,7 +53,7 @@
             }
         },
         "pizza-dough" : {
-            "img" : "",
+            "img" : "./img/pizzaDough.PNG",
             "plus" : {
                 "goop": "pizza"
             }

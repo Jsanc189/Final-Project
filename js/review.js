@@ -27,7 +27,7 @@ $(document).ready(function(){
                                "Soggy #food#.  The #topping1# was not fresh.  Won't be coming back....",
                                "Sad, limp crust on #food#.   It felt like it was frozen for a month before they microwaved and served it to me.  Gross."
                             ],
-            "food":["Pepporoni Pizza"],
+            "food":["Pepperoni Pizza"],
             "topping1":["pepporoni"],
             "topping2":["mozzarella"]
         }
