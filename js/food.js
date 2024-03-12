@@ -285,8 +285,15 @@ class Food {
       //fill(Food.instances[i].Over(mouseX, mouseY, Food.instances[i].Img, Food.instances[i].X(), Food.instances[i].Y(), (Food.instances[i].r*2*Food.Heightbase)/Food.Scale, (Food.instances[i].r*2*Food.Heightbase)/Food.Scale));
       if(!Food.instances[i].Img || Food.instances[i].type === "icon"){
         ellipse(Food.instances[i].X(), Food.instances[i].Y(), (Food.instances[i].r*2*Food.Heightbase)/Food.Scale, (Food.instances[i].r*2*Food.Heightbase)/Food.Scale);
+        //fill(0);
+      //text(Food.instances[i].name, Food.instances[i].X(), Food.instances[i].Y());
+      } 
+      if(!Food.instances[i].Img){
         fill(0);
-        text(Food.instances[i].name, Food.instances[i].X(), Food.instances[i].Y());
+         text(Food.instances[i].name, Food.instances[i].X(), Food.instances[i].Y());
+      } else{
+        fill(0);
+        text(Food.instances[i].name, Food.instances[i].X(), Food.instances[i].Y() + (Food.instances[i].r*Food.Heightbase)/Food.Scale + 7);
       }
       if(Food.instances[i].Img){
         image(Food.instances[i].Img, Food.instances[i].X(), Food.instances[i].Y(), (Food.instances[i].r*2*Food.Heightbase)/Food.Scale, (Food.instances[i].r*2*Food.Heightbase)/Food.Scale);
