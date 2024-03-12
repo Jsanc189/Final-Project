@@ -6,6 +6,7 @@ let wtable;
 let blender;
 let knife;
 let trash;
+let pres_table;
 
 let FOODLIB;
 
@@ -16,7 +17,8 @@ function preload() {
   wtable = loadImage("img/work_table.png");
   blender = loadImage("img/blender.png");
   knife = loadImage("img/knife.png");
- trash = loadImage("img/trash.png");
+  trash = loadImage("img/trash.png");
+  pres_table = loadImage("img/pres_table.png");
 
   let xhreq = new XMLHttpRequest();
   xhreq.open("GET", "./js/food.json", false);
@@ -51,10 +53,11 @@ function setup() {
 
 
   
-  var f13 = new Food("blender", 59.5, 49, 3.5, FOODLIB, [], "tool", "tools", 0, 0, width, height);
-  var f14 = new Food("knife", 50, 50, 2, FOODLIB, [], "tool", "tools", 0, 0, width, height);
-  var f15 = new Food("oven", 22, 50, 6, FOODLIB, [], "tool", "tools", 0, 0, width, height);
-  var f15 = new Food("trash", 75, 61.5, 2.5, FOODLIB, [], "tool", "tools", 0, 0, width, height);
+  var f13 = new Food("blender", 50, 40, 3.5, FOODLIB, [], "tool", "tools", 0, 0, width, height);
+  var f14 = new Food("knife", 79, 67, 2, FOODLIB, [], "tool", "tools", 0, 0, width, height);
+  var f15 = new Food("oven", 75, 35, 10, FOODLIB, [], "tool", "tools", 0, 0, width, height);
+  var f15 = new Food("trash", 92, 93, 7, FOODLIB, [], "tool", "tools", 0, 0, width, height);
+  var f16 = new Food("pres_table", 17, 68, 6, FOODLIB, [], "tool", "tools", 0, 0, width, height);
 }
 
 var Img = function(img, x, y, w, h, xb, yb, wb, hb){
@@ -83,11 +86,12 @@ function draw() {
   image(img, 0, 0, W, H);
   imageMode(CENTER);
 
-  ImgScale(oven, 20, 50, 50, 0, 0, W, H);
-  ImgScale(wtable, 60, 50, 30, 0, 0, W, H);
-  ImgScale(blender, 60, 39, 40, 0, 0, W, H);
-  ImgScale(knife, 50, 48.5, 30, 0, 0, W, H);
-  ImgScale(trash, 75, 58, 30, 0, 0, W, H);
+  ImgScale(oven, 75, 35, 80, 0, 0, W, H);
+  ImgScale(wtable, 66, 67, 65, 0, 0, W, H);
+  ImgScale(blender, 50, 40, 60, 0, 0, W, H);
+  ImgScale(knife, 80, 65, 60, 0, 0, W, H);
+  ImgScale(trash, 92, 95, 70, 0, 0, W, H);
+  ImgScale(pres_table, 17, 68, 60, 0, 0, W, H);
 
   Food.drag();
   Food.draw();
