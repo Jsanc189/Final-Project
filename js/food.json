@@ -22,6 +22,7 @@
         "cheesy-dough" : {
             "img" : "./img/cheesyDough.png",
             "plus" : {
+                "pineapple" : "cheesier-dough"
             }
         },
         "dough" : {
@@ -34,6 +35,7 @@
         "goop" : {
             "img" : "./img/goop.PNG",
             "plus" : {
+                "pizza-dough" : "pizza"
             }
         },
         "mushroom" : {
@@ -45,7 +47,7 @@
         "pepperoni" : {
             "img" : "./img/pepperoni.png",
             "plus" : {
-
+                "pizza-dough" : "pizza"
             }
         },
         "pinnaple" : {
@@ -56,13 +58,14 @@
         "pizza-dough" : {
             "img" : "./img/pizzaDough.PNG",
             "plus" : {
-                "goop": "raw-pizza"
+                "tomato" : "pizza"
             }
         },
         "super-mushroom" : {
             "img": "./img/superMushroom.png",
             "plus" : {
-                "mushroom" : "goop"
+                "mushroom" : "goop",
+                "super-mushroom" : "tomato"
             }
         },
         "tomato" : {
@@ -85,7 +88,7 @@
                 "pizza" : "dough",
                 "mushroom" : "goop",
                 "tomato" : "goop",
-                "super-mushroom" : "mushroom"
+                "super-mushroom" : "bacon"
             }
         },
         "knife" : {
@@ -95,7 +98,7 @@
                 "pepperoni" : "bacon",
                 "pizza" : "cheese-sticks",
                 "tomato" : "goop",
-                "super-mushroom" : "mushroom"
+                "super-mushroom" : "pepperoni"
             }
         },
         "oven" : {
@@ -104,7 +107,9 @@
                 "cheese" : "goop",
                 "cheesier-dough" :  "cheese-sticks",
                 "cheesy-dough" : "pizza",
-                "mushroom" : "super-mushroom"
+                "mushroom" : "super-mushroom",
+                "pizza" : "burnt-pizza",
+                "raw-pizza" : "pizza"
             }
         }
     }
