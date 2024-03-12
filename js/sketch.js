@@ -25,6 +25,8 @@ function preload() {
   xhreq.send(null);
   FOODLIB = JSON.parse(xhreq.responseText);
   console.log(FOODLIB);
+
+  Food.LoadImages(FOODLIB);
 }
 
 function setup() {
