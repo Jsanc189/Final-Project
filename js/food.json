@@ -45,6 +45,7 @@
         "pepperoni" : {
             "img" : "./img/pepperoni.png",
             "plus" : {
+
             }
         },
         "pinnaple" : {
@@ -55,7 +56,7 @@
         "pizza-dough" : {
             "img" : "./img/pizzaDough.PNG",
             "plus" : {
-                "goop": "pizza"
+                "goop": "raw-pizza"
             }
         },
         "super-mushroom" : {
