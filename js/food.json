@@ -90,7 +90,7 @@
 
     "tools" : {
         "blender" : {
-            "sfx" : "",
+            "sfx" : "./audio/blender.mp3",
             "plus" : {
                 "pepperoni" : "bacon",
                 "pizza" : "dough",
@@ -100,7 +100,7 @@
             }
         },
         "knife" : {
-            "sfx" : "",
+            "sfx" : "./audio/chopping.mp3",
             "plus" : {
                 "cheese" : "pinapple",
                 "pepperoni" : "bacon",
@@ -110,7 +110,7 @@
             }
         },
         "oven" : {
-            "sfx" : "",
+            "sfx" : "./audio/oven.mp3",
             "plus" : {
                 "cheese" : "goop",
                 "cheesier-dough" :  "cheese-sticks",

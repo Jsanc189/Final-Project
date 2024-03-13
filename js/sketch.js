@@ -9,6 +9,7 @@ let trash;
 let pres_table;
 let yes = true;
 let my_text;
+let bg_music;
 
 let grammar; //stores the text for reviews of food
 
@@ -23,6 +24,7 @@ function preload() {
   knife = loadImage("img/knife.png");
   trash = loadImage("img/trash.png");
   pres_table = loadImage("img/pres_table.png");
+  bg_music = loadSound('./audio/Streets_Of_Little_Italy.mp3')
 
   let xhreq = new XMLHttpRequest();
   xhreq.open("GET", "./js/food.json", false);
@@ -45,6 +47,8 @@ function setup() {
     resizeCanvas(canvasContainer.width(), canvasContainer.height());
   });
 
+  bg_music.setVolume(0.5);
+  window.addEventListener('click', playSong);
   //text for debugging
   //my_text = loadGeneratedText("pizza", ["cheese", "goop", "pepperoni", "mushroom"]).Text;
 
@@ -189,4 +193,16 @@ function review(reviewText){
 
     
   })
+}
+
+function playSong() {
+  // Check if the song is loaded before playing
+  if (bg_music.isLoaded()) {
+    // Play the song
+    bg_music.loop();
+    // Remove the event listener after the user gesture
+    window.removeEventListener('click', playSong);
+  } else {
+    console.log('Song is not loaded yet.');
+  }
 }
