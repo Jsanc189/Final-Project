@@ -30,11 +30,7 @@ function preload() {
   xhreq.open("GET", "./js/food.json", false);
   xhreq.send(null);
   FOODLIB = JSON.parse(xhreq.responseText);
-  console.log(FOODLIB);
-
   Food.LoadImages(FOODLIB);
-
-  
 }
 
 function setup() {
@@ -50,22 +46,22 @@ function setup() {
   bg_music.setVolume(0.5);
   window.addEventListener('click', playSong);
   //text for debugging
-  //my_text = loadGeneratedText("pizza", ["cheese", "goop", "pepperoni", "mushroom"]).Text;
+  my_text = loadGeneratedText("pizza", ["cheese", "goop", "pepperoni", "mushroom"]).Text;
 
   //Draw the loaded image onto the canvas
   //image(img, 0, 0, width, height);
   Food.setBase(0, 0, width, height);
-  var f1 = new Food("bacon", 20, 90, 4.5, FOODLIB, [], "icon", "ingredients", 0, 0, width, height);
-  var f2 = new Food("cheese", 26,90, 4.5, FOODLIB, [], "icon", "ingredients", 0, 0, width, height);
-  var f3 = new Food("dough", 32, 90, 4.5, FOODLIB, [], "icon", "ingredients", 0, 0, width, height);
-  var f4 = new Food("cheesy-dough", 38, 90, 4.5, FOODLIB, [], "icon", "ingredients", 0, 0, width, height);
-  var f5 = new Food("cheesier-dough", 44, 90, 4.5, FOODLIB, [], "icon", "ingredients", 0, 0, width, height);
-  var f6 = new Food("goop", 50, 90, 4.5, FOODLIB, [], "icon", "ingredients", 0, 0, width, height);
-  var f7 = new Food("mushroom", 56, 90, 4.5, FOODLIB, [], "icon", "ingredients", 0, 0, width, height);
-  var f8 = new Food("pepperoni", 62, 90, 4.5, FOODLIB, [], "icon", "ingredients", 0, 0, width, height);
-  var f9 = new Food("pizza", 68, 90, 4.5, FOODLIB, [], "icon", "ingredients", 0, 0, width, height);
-  var f10 = new Food("pizza-dough", 74, 90, 4.5, FOODLIB, [], "icon", "ingredients", 0, 0, width, height);
-  var f12 = new Food("tomato", 80, 90, 4.5, FOODLIB, [], "icon", "ingredients", 0, 0, width, height);
+  var f1 = new Food("bacon", 20 + 12, 90, 4.5, FOODLIB, [], "icon", "ingredients", 0, 0, width, height);
+  var f2 = new Food("cheese", 26 + 12,90, 4.5, FOODLIB, [], "icon", "ingredients", 0, 0, width, height);
+  var f3 = new Food("dough", 32 + 12, 90, 4.5, FOODLIB, [], "icon", "ingredients", 0, 0, width, height);
+  var f4 = new Food("goop", 38 + 12, 90, 4.5, FOODLIB, [], "icon", "ingredients", 0, 0, width, height);
+  var f5 = new Food("mushroom", 44 + 12, 90, 4.5, FOODLIB, [], "icon", "ingredients", 0, 0, width, height);
+  var f6 = new Food("pepperoni", 50 + 12, 90, 4.5, FOODLIB, [], "icon", "ingredients", 0, 0, width, height);
+  var f7 = new Food("tomato", 56 + 12, 90, 4.5, FOODLIB, [], "icon", "ingredients", 0, 0, width, height);
+  // var f8 = new Food("pepperoni", 62, 90, 4.5, FOODLIB, [], "icon", "ingredients", 0, 0, width, height);
+  // var f9 = new Food("pizza", 68, 90, 4.5, FOODLIB, [], "icon", "ingredients", 0, 0, width, height);
+  // var f10 = new Food("pizza-dough", 74, 90, 4.5, FOODLIB, [], "icon", "ingredients", 0, 0, width, height);
+  // var f12 = new Food("tomato", 80, 90, 4.5, FOODLIB, [], "icon", "ingredients", 0, 0, width, height);
 
 
   
@@ -87,6 +83,7 @@ var ImgScale = function(img, x, y, s, xb, yb, wb, hb){
 }
 
 function draw() {
+  background(255);
   var ratio = 1.5;
   var Scale = 1;
   var W = width;
@@ -111,7 +108,7 @@ function draw() {
 
   Food.drag();
   Food.draw();
-
+  review(my_text, W, H);
 
 }
 
@@ -164,7 +161,7 @@ function loadGeneratedText(food, toppings) {
     };
 }
 
-function review(reviewText){
+function review(reviewText, width, height){
   let maxWidth = width/4;
   let y = height/14;
   let x = width/6;
@@ -175,23 +172,22 @@ function review(reviewText){
   let words = reviewText.split(' ');
   let line = '';
  
- for (let i = 0; i < words.length; i++) {
-   let testLine = line + words[i] + ' ';
-   let testWidth = textWidth(testLine);
-   if (testWidth > maxWidth) {
-     text(line, x, y); // Draw the line
-     line = words[i] + ' '; // Start a new line
-     y += fontSize; // Move to the next line
-   } else {
-     line = testLine;
-   }
+  for (let i = 0; i < words.length; i++) {
+    let testLine = line + words[i] + ' ';
+    let testWidth = textWidth(testLine);
+    if (testWidth > maxWidth) {
+      text(line, x, y); // Draw the line
+      line = words[i] + ' '; // Start a new line
+      y += fontSize; // Move to the next line
+    } else {
+      line = testLine;
+    }
  }
+ text(line, x, y);
   //text(reviewText, 600, 300);
 
   setTimeout(function(){
     //clear();
-
-    
   })
 }
 
