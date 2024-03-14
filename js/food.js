@@ -168,9 +168,20 @@ class Food {
     return ((y*Food.Scale)-Food.Ybase)/Food.Heightbase;
   }
   getIngredients() {
-    // returns the list of ingredients that make up the food item, if the food item is itself an ingredient, returns itself.
-    if (this.ingredients.length == 0) return this.name;
-    return this.ingredients;
+    var Array = [];
+    for(var i = 0; i < this.ingredients.length; i++){
+      if(this.ingredients[i] && Food.CombosLib["ingredients"][this.ingredients[i].name]){
+        Array.push(this.ingredients[i].name);
+      }
+    }
+    for(var i = 0; i < this.ingredients.length; i++){
+      if(this.ingredients[i]){
+        Array = Array.concat(this.ingredients[i].getIngredients());
+      }
+    }
+
+
+    return Array;
   }
 
   // takes a Food objects name property (Food.name) as a parameter or cooking method (oven, blender, etc.)
@@ -293,8 +304,9 @@ class Food {
          text(Food.instances[i].name, Food.instances[i].X(), Food.instances[i].Y());
       } else{
         fill(0);
-        text(Food.instances[i].name, Food.instances[i].X(), Food.instances[i].Y() + (Food.instances[i].r*Food.Heightbase)/Food.Scale + 7);
+        //text(Food.instances[i].name + ":\n[" + Food.instances[i].getIngredients() + "]", Food.instances[i].X(), Food.instances[i].Y() + (Food.instances[i].r*Food.Heightbase)/Food.Scale + 7);
       }
+      text(Food.instances[i].name + ":\n[" + Food.instances[i].getIngredients() + "]", Food.instances[i].X(), Food.instances[i].Y() + (Food.instances[i].r*Food.Heightbase)/Food.Scale + 7);
       if(Food.instances[i].Img){
         image(Food.instances[i].Img, Food.instances[i].X(), Food.instances[i].Y(), (Food.instances[i].r*2*Food.Heightbase)/Food.Scale, (Food.instances[i].r*2*Food.Heightbase)/Food.Scale);
         //ellipse(x + Food.instances[i].x, y + height - Food.instances[i].y, 5, 5);
