@@ -82,6 +82,9 @@ var ImgScale = function(img, x, y, s, xb, yb, wb, hb){
   image(img, (xb + x*wb)/100,  (yb + y*hb)/100, (img.width*s*hb)/100000, (img.height*s*hb)/100000);
 }
 
+var TT = 0;
+var I = 11;
+var arr = [];
 function draw() {
   background(255);
   var ratio = 1.5;
@@ -108,6 +111,17 @@ function draw() {
 
   Food.drag();
   Food.draw();
+
+  for(var i = 0; i < arr.length - 1; i++){
+    line(Food.instances[I].X() + arr[i].x, Food.instances[I].Y() + arr[i].y, Food.instances[I].X() + arr[i+1].x, Food.instances[I].Y() + arr[i+1].y);
+  }
+  if(mouseIsPressed && TT < 0){
+    arr.push({x:mouseX - Food.instances[I].X(), y:mouseY - Food.instances[I].Y()});
+    console.log(arr);
+    TT = 10;
+  }
+  TT--;
+  console.log(H);
   review(my_text, W, H);
 
 }
