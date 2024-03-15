@@ -3,7 +3,9 @@
         "bacon" : {
             "img" : "./img/bacon.PNG",
             "plus" : {
-                "bacon" : "pepperoni"
+                "bacon" : "pepperoni",
+                "cheesy-dough" : "pizza",
+                "dough" : "pizza"
             }
         },
         "cheese" : {
@@ -83,6 +85,16 @@
         },
         "pizza" : {
             "img" : "./img/pizza.PNG",
+            "plus" : {
+            }
+        },
+        "raw_pizza" : {
+            "img" : "",
+            "plus" : {
+            }
+        },
+        "burnt_pizza" : {
+            "img" : "",
             "plus" : {
             }
         }

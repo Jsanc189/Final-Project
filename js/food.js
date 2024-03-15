@@ -488,25 +488,3 @@ class Food {
     }
   }
 }
-
-// These ideas are subject to change, these are just what I had in mind
-// If remembering ingredients is important, we may need to also create JSON object for those too
-
-// Ex.
-
-// IngredientsDict = {
-//     PepperoniPizza: ["Dough", "Cheese", "Pepperoni", "Oven"],
-//     Sandwich: ...
-//     ...
-// }
-
-// Example of what kind of object "ingredients" would look like
-
-// Example of what kind of object "possibleCombos" looks like
-
-// DoughCombos = {
-//     Cheese: "Unbaked Cheese Pizza",
-//     Oven: "Bread",
-//     Cherry: "Unbaked Cherry Pie",
-//     BlueBerry: "Unbaked Blueberry Pie",
-// }
