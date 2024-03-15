@@ -103,6 +103,170 @@ class Food {
   static Widthbase = 0;
   static Heightbase = 0;
   static Scale;
+  static colliders = {
+    blender: {height: 594.6666666666666, array:[
+    {
+        "x": -66,
+        "y": 120.13333333333335
+    },
+    {
+        "x": -67,
+        "y": 103.13333333333335
+    },
+    {
+        "x": -57,
+        "y": 88.13333333333335
+    },
+    {
+        "x": -42,
+        "y": 76.13333333333335
+    },
+    {
+        "x": -28,
+        "y": 68.13333333333335
+    },
+    {
+        "x": -24,
+        "y": 65.13333333333335
+    },
+    {
+        "x": -31,
+        "y": 20.133333333333354
+    },
+    {
+        "x": -37,
+        "y": -5.866666666666646
+    },
+    {
+        "x": -43,
+        "y": -11.866666666666646
+    },
+    {
+        "x": -47,
+        "y": -20.866666666666646
+    },
+    {
+        "x": -43,
+        "y": -21.866666666666646
+    },
+    {
+        "x": -41,
+        "y": -28.866666666666646
+    },
+    {
+        "x": -36,
+        "y": -33.866666666666646
+    },
+    {
+        "x": -30,
+        "y": -33.866666666666646
+    },
+    {
+        "x": -20,
+        "y": -34.866666666666646
+    },
+    {
+        "x": -15,
+        "y": -41.866666666666646
+    },
+    {
+        "x": -11,
+        "y": -40.866666666666646
+    },
+    {
+        "x": 0,
+        "y": -39.866666666666646
+    },
+    {
+        "x": 4,
+        "y": -33.866666666666646
+    },
+    {
+        "x": 15,
+        "y": -31.866666666666646
+    },
+    {
+        "x": 21,
+        "y": -25.866666666666646
+    },
+    {
+        "x": 24,
+        "y": -17.866666666666646
+    },
+    {
+        "x": 32,
+        "y": -12.866666666666646
+    },
+    {
+        "x": 38,
+        "y": -1.8666666666666458
+    },
+    {
+        "x": 42,
+        "y": 11.133333333333354
+    },
+    {
+        "x": 42,
+        "y": 23.133333333333354
+    },
+    {
+        "x": 40,
+        "y": 34.133333333333354
+    },
+    {
+        "x": 37,
+        "y": 42.133333333333354
+    },
+    {
+        "x": 31,
+        "y": 49.133333333333354
+    },
+    {
+        "x": 27,
+        "y": 53.133333333333354
+    },
+    {
+        "x": 19,
+        "y": 53.133333333333354
+    },
+    {
+        "x": 18,
+        "y": 64.13333333333335
+    },
+    {
+        "x": 22,
+        "y": 68.13333333333335
+    },
+    {
+        "x": 31,
+        "y": 69.13333333333335
+    },
+    {
+        "x": 38,
+        "y": 75.13333333333335
+    },
+    {
+        "x": 41,
+        "y": 88.13333333333335
+    },
+    {
+        "x": 43,
+        "y": 98.13333333333335
+    },
+    {
+        "x": 42,
+        "y": 110.13333333333335
+    },
+    {
+        "x": -4,
+        "y": 128.13333333333335
+    },
+    {
+        "x": -68,
+        "y": 118.13333333333335
+    }
+  ]}
+};
 
 
 
@@ -306,10 +470,20 @@ class Food {
         fill(0);
         //text(Food.instances[i].name + ":\n[" + Food.instances[i].getIngredients() + "]", Food.instances[i].X(), Food.instances[i].Y() + (Food.instances[i].r*Food.Heightbase)/Food.Scale + 7);
       }
-      text(Food.instances[i].name + ":\n[" + Food.instances[i].getIngredients() + "]", Food.instances[i].X(), Food.instances[i].Y() + (Food.instances[i].r*Food.Heightbase)/Food.Scale + 7);
+      text(Food.instances[i].name + i + ":\n[" + Food.instances[i].getIngredients() + "]", Food.instances[i].X(), Food.instances[i].Y() + (Food.instances[i].r*Food.Heightbase)/Food.Scale + 7);
       if(Food.instances[i].Img){
         image(Food.instances[i].Img, Food.instances[i].X(), Food.instances[i].Y(), (Food.instances[i].r*2*Food.Heightbase)/Food.Scale, (Food.instances[i].r*2*Food.Heightbase)/Food.Scale);
         //ellipse(x + Food.instances[i].x, y + height - Food.instances[i].y, 5, 5);
+      }
+      if(Food.instances[i].type === "tool"){
+        var col = Food.colliders[Food.instances[i].name];
+        if(col){
+          col = col.array;
+          for(var o = 0; o < col.length - 1; o++){
+            var tmp = 594.6666666666666;
+            line(Food.instances[i].X() + (col[o].x*Food.Heightbase)/tmp, Food.instances[i].Y() + (col[o].y*Food.Heightbase)/tmp, Food.instances[i].X() + (col[o+1].x*Food.Heightbase)/tmp, Food.instances[i].Y() + (col[o+1].y*Food.Heightbase)/tmp);
+          }
+        }
       }
     }
   }
