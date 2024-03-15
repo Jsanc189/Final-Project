@@ -85,6 +85,7 @@ var ImgScale = function(img, x, y, s, xb, yb, wb, hb){
 var TT = 0;
 var I = 9;
 var arr = [];
+var currentReview = "";
 function draw() {
   background(255);
   var ratio = 1.5;
@@ -123,7 +124,7 @@ function draw() {
   }
   TT--;
   //console.log(H);
-  review(my_text, W, H);
+  review(currentReview, W, H);
 
 }
 

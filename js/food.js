@@ -138,13 +138,15 @@ var inside = function(x, y, r, shape){
 //Food.instances[i].X() + (col[o].x*Food.Heightbase)/tmp
 var inside2 = function(x, y, x2, y2, r, shape, HB, TMP){
   //noFill();
+  //fill(0, 0, 0, 100);
+  //noStroke();
   //beginShape();
-  for(var i = 0; i < shape.length; i++){
-    //vertex(x2 + (shape[i].x*HB)/TMP, y2 + (shape[i].y*HB)/TMP);
-  }
-  if(shape.length > 0){
-    //vertex(x2 + (shape[0].x*HB)/TMP, y2 + (shape[0].y*HB)/TMP);
-  }
+  //for(var i = 0; i < shape.length; i++){
+  //  vertex(x2 + (shape[i].x*HB)/TMP, y2 + (shape[i].y*HB)/TMP);
+  //}
+  //if(shape.length > 0){
+  //  vertex(x2 + (shape[0].x*HB)/TMP, y2 + (shape[0].y*HB)/TMP);
+  //}
   //endShape();
   var count = 0;
   for(var i = 0; i < shape.length; i++){
@@ -1423,7 +1425,10 @@ oven: {height: 578.222, array:[
       if(i !== index){
         if((dist(Food.instances[index].X(), Food.instances[index].Y(), Food.instances[i].X(), Food.instances[i].Y()) < (Food.instances[i].r*Food.Heightbase)/Food.Scale + (Food.instances[index].r*Food.Heightbase)/Food.Scale && Food.instances[index].type !== "icon" && Food.instances[i].type !== "icon") || (Food.colliders[Food.instances[i].name] && inside2(Food.instances[index].X(), Food.instances[index].Y(), Food.instances[i].X(), Food.instances[i].Y(), (Food.instances[index].r*Food.Heightbase)/Food.Scale, Food.colliders[Food.instances[i].name].array, Food.Heightbase, Food.colliders[Food.instances[i].name].height) && Food.instances[index].type !== "icon" && Food.instances[i].type === "tool")){
           if(Food.instances[i].name === "trash"){
-            return false;
+            return "trash";
+          }
+          if(Food.instances[i].name === "pres_table"){
+            return "pres_table";
           }
           var Outcome1 = Food.instances[i].getOutcome(Food.instances[index].name);
           var Outcome2 = Food.instances[index].getOutcome(Food.instances[i].name);
@@ -1460,7 +1465,7 @@ oven: {height: 578.222, array:[
       var I = new Food(picked.name, i1.x, i1.y, i1.r, Food.CombosLib, [i1, i2], "food", "ingredients", Food.Xbase, Food.Ybase, Food.Widthbase, Food.Heightbase);
       console.log(I);
     }
-    return true;
+    return "";
   }
   static drag(){
     Food.dragHandler.hoverIndex = -1;
@@ -1494,8 +1499,15 @@ oven: {height: 578.222, array:[
     }
     if(!mouseIsPressed && Food.dragHandler.dragging){
       var outcome = Food.merge(Food.instances.length-1);
-      if(outcome === false){
+      if(outcome === "trash"){
         Food.instances.splice(Food.instances.length-1, 1);
+      }
+      if(outcome === "pres_table"){
+        var tmpIngredients = Food.instances[Food.instances.length-1].getIngredients();
+        if(tmpIngredients.length >= 2){
+          var tmpTxt = loadGeneratedText(Food.instances[Food.instances.length-1].name, tmpIngredients);
+          currentReview = tmpTxt.Text;
+        }
       }
       Food.dragHandler.dragging = false;
     }
@@ -1512,7 +1524,7 @@ oven: {height: 578.222, array:[
   }
   static draw(){
     textAlign(CENTER, CENTER);
-    textSize(7);
+    textSize((7*Food.Heightbase)/400);
     for(var i = 0; i < Food.instances.length; i++){
       fill(255);
       if(i === Food.dragHandler.hoverIndex){
@@ -1528,14 +1540,15 @@ oven: {height: 578.222, array:[
         //fill(0);
       //text(Food.instances[i].name, Food.instances[i].X(), Food.instances[i].Y());
       } 
-      if(!Food.instances[i].Img){
+      if(!Food.instances[i].Img && !Food.colliders[Food.instances[i].name]){
         fill(0);
          text(Food.instances[i].name, Food.instances[i].X(), Food.instances[i].Y());
-      } else{
+      } else if(!Food.colliders[Food.instances[i].name]){
         fill(0);
+        text(Food.instances[i].name, Food.instances[i].X(), Food.instances[i].Y() + (Food.instances[i].r*Food.Heightbase)/Food.Scale + 5);
         //text(Food.instances[i].name + ":\n[" + Food.instances[i].getIngredients() + "]", Food.instances[i].X(), Food.instances[i].Y() + (Food.instances[i].r*Food.Heightbase)/Food.Scale + 7);
       }
-      text(Food.instances[i].name + i + ":\n[" + Food.instances[i].getIngredients() + "]", Food.instances[i].X(), Food.instances[i].Y() + (Food.instances[i].r*Food.Heightbase)/Food.Scale + 7);
+      //text(Food.instances[i].name + i + ":\n[" + Food.instances[i].getIngredients() + "]", Food.instances[i].X(), Food.instances[i].Y() + (Food.instances[i].r*Food.Heightbase)/Food.Scale + 7);
       if(Food.instances[i].Img){
         image(Food.instances[i].Img, Food.instances[i].X(), Food.instances[i].Y(), (Food.instances[i].r*2*Food.Heightbase)/Food.Scale, (Food.instances[i].r*2*Food.Heightbase)/Food.Scale);
         //ellipse(x + Food.instances[i].x, y + height - Food.instances[i].y, 5, 5);
