@@ -67,9 +67,9 @@ function setup() {
   
   var f13 = new Food("blender", 50, 40, 3.5, FOODLIB, [], "tool", "tools", 0, 0, width, height);
   var f14 = new Food("knife", 79, 67, 2, FOODLIB, [], "tool", "tools", 0, 0, width, height);
-  var f15 = new Food("oven", 75, 35, 10, FOODLIB, [], "tool", "tools", 0, 0, width, height);
+  var f15 = new Food("oven", 78, 40, 5, FOODLIB, [], "tool", "tools", 0, 0, width, height);
   var f15 = new Food("trash", 92, 93, 7, FOODLIB, [], "tool", "tools", 0, 0, width, height);
-  var f16 = new Food("pres_table", 17, 68, 6, FOODLIB, [], "tool", "tools", 0, 0, width, height);
+  var f16 = new Food("pres_table", 17, 65, 6, FOODLIB, [], "tool", "tools", 0, 0, width, height);
 }
 
 var Img = function(img, x, y, w, h, xb, yb, wb, hb){
@@ -83,7 +83,7 @@ var ImgScale = function(img, x, y, s, xb, yb, wb, hb){
 }
 
 var TT = 0;
-var I = 11;
+var I = 9;
 var arr = [];
 function draw() {
   background(255);
@@ -116,12 +116,13 @@ function draw() {
     line(Food.instances[I].X() + arr[i].x, Food.instances[I].Y() + arr[i].y, Food.instances[I].X() + arr[i+1].x, Food.instances[I].Y() + arr[i+1].y);
   }
   if(mouseIsPressed && TT < 0){
-    arr.push({x:mouseX - Food.instances[I].X(), y:mouseY - Food.instances[I].Y()});
-    console.log(arr);
+    //arr.push({x:mouseX - Food.instances[I].X(), y:mouseY - Food.instances[I].Y()});
+    //console.log(arr);
+    //console.log(H);
     TT = 10;
   }
   TT--;
-  console.log(H);
+  //console.log(H);
   review(my_text, W, H);
 
 }
