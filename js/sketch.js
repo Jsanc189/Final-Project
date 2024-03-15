@@ -159,12 +159,13 @@ function loadGeneratedText(food, toppings) {
                               "A not too expensive place to get a #food# if you don't want to pay too much for one. Kinda stale, but not bad to where you'll regret buying it"
                             ],
             "negative_event": ["Taking a bite of what appears to be a normal #food#, you're met with the unexpected texture of #topping1#. The shock was too much!",
-                               "THIS PLACE IS THE WORST!  BURNDE MY ORDER! RUD CUSTOMER SERVICE! WILL NOT BE COMING BACK!!!! Also, just bad #topping1#",
+                               "THIS PLACE IS THE WORST!  BURNDE MY #FOOD#! RUD CUSTOMER SERVICE! WILL NOT BE COMING BACK!!!! Also, just bad #topping1#",
                                "After indulging in what seemed like a casual #food# dinner at a local joint, you wake up in the middle of the night with food poisoing!  NEVER COMING BACK!",
                                "Soggy #food#.  The #topping1# was not fresh.  Won't be coming back....",
                                "Sad, limp crust on #food#.   It felt like it was frozen for a month before they microwaved and served it to me.  Gross."
                             ],
             "food":[food],
+            "FOOD":[food.toUpperCase()],
             "topping1":[topping1],
             "topping2":[topping2]
         },
