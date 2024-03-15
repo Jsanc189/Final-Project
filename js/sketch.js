@@ -120,10 +120,13 @@ function draw() {
     //arr.push({x:mouseX - Food.instances[I].X(), y:mouseY - Food.instances[I].Y()});
     //console.log(arr);
     //console.log(H);
+    //Food.SaveHoverImages(0,9);
+    Food.SaveHoverImages(10,100);
     TT = 10;
   }
   TT--;
   //console.log(H);
+  fill(0);
   review(currentReview, W, H);
 
 }

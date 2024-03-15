@@ -11,7 +11,7 @@
         "cheese" : {
             "img" : "./img/cheeseBlock.png",
             "plus" : {
-                "cheese" : "pinnaple",
+                "cheese" : "pineapple",
                 "dough" : "cheesy-dough",
                 "cheesier-dough" : "cheese",
                 "cheesy-dough" : "cheesier-dough"
@@ -21,7 +21,7 @@
             "img" : "./img/cheesierDough.PNG",
             "plus" : {
                 "cheesy-dough" : "pizza-dough",
-                "pinapple" : "cheese"
+                "pineapple" : "cheese"
             }
         },
         "cheesy-dough" : {
@@ -58,10 +58,10 @@
                 "pizza-dough" : "pizza"
             }
         },
-        "pinnaple" : {
+        "pineapple" : {
             "img" : "./img/pineapple.png",
             "plus" : {
-                "pinnaple" : "cheese"
+                "pineapple" : "cheese"
             }
         },
         "pizza-dough" : {
@@ -114,7 +114,7 @@
         "knife" : {
             "sfx" : "./audio/chopping.mp3",
             "plus" : {
-                "cheese" : "pinapple",
+                "cheese" : "pineapple",
                 "pepperoni" : "bacon",
                 "pizza" : "cheese-sticks",
                 "tomato" : "goop",

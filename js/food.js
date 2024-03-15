@@ -1327,13 +1327,54 @@ oven: {height: 578.222, array:[
 578.222
 */
   static images = {};
+  static HoverImages = {};
   static LoadImages(data){
     for(const entry in data.ingredients){
       var Img;
+      var Img2;
       if(data.ingredients[entry].img !== ""){
         Img = loadImage(data.ingredients[entry].img);
+        Img2 = loadImage("./HoverImg/" + data.ingredients[entry].img.substring(6, data.ingredients[entry].img.length - 4) + "_Hover.png");//data.ingredients[entry].img.substring(6, data.ingredients[entry].img.length - 4) + "_Hover"
       }
-      Food.images[data.ingredients[entry].img] = Img;
+      if(Img){
+        Food.images[data.ingredients[entry].img] = Img;
+      }
+      if(Img2){
+        Food.HoverImages[data.ingredients[entry].img] = Img2;
+      }
+    }
+  }
+
+  static SaveHoverImages(start, end){
+    var count = 0;
+    if(false){
+      for(Img in Food.images){
+        if(count >= start && count <= end){
+        if(Img){
+        var img = Food.images[Img];
+        //image(img, 0, 0, 10, 10);
+        console.log(Img.substring(6, Img.length - 4) + "_Hover");
+        //console.log(Img.substring(6, Img.length - 4));
+        //console.log(Img);
+        
+        img.loadPixels();
+        for (let x = 0; x < img.width; x += 1) {
+          for (let y = 0; y < img.height; y += 1) {
+            var c = img.get(x, y);
+            var a = alpha(c);
+            var c2 = color(red(c) * 0.7, green(c) * 0.7, blue(c) * 0.7, a);
+            img.set(x, y, c2);
+          }
+        }
+        img.updatePixels();
+        img.save(Img.substring(6, Img.length - 4) + "_Hover", "png");
+        console.log(img);
+        //return;
+        
+        }
+      }
+      count++;
+    }
     }
   }
 
@@ -1353,6 +1394,7 @@ oven: {height: 578.222, array:[
     this.possibleCombos = {};
     this.img = "";
     this.Img = null;
+    this.ImgHover = null;
     //Food.Xbase = Xbase;
     //Food.Ybase = Ybase;
     //Food.Widthbase = Widthbase;
@@ -1364,9 +1406,11 @@ oven: {height: 578.222, array:[
       this.possibleCombos = allCombos[category][name].plus;
       this.img = allCombos[category][name].img // dictionary of combinations for the food item, with entries being the result (Dict {})
     }
-    if(this.img !== ""){
+    if(this.img && this.img !== ""){
       //this.Img = loadImage(this.img);
+      //this.Img = Food.images[this.img]; //HoverImages
       this.Img = Food.images[this.img];
+      this.ImgHover = Food.HoverImages[this.img];
       console.log("loading: " + this.img);
     }
     this.x = x;
@@ -1507,6 +1551,7 @@ oven: {height: 578.222, array:[
         if(tmpIngredients.length >= 2){
           var tmpTxt = loadGeneratedText(Food.instances[Food.instances.length-1].name, tmpIngredients);
           currentReview = tmpTxt.Text;
+          Food.instances.splice(Food.instances.length-1, 1);
         }
       }
       Food.dragHandler.dragging = false;
@@ -1550,7 +1595,15 @@ oven: {height: 578.222, array:[
       }
       //text(Food.instances[i].name + i + ":\n[" + Food.instances[i].getIngredients() + "]", Food.instances[i].X(), Food.instances[i].Y() + (Food.instances[i].r*Food.Heightbase)/Food.Scale + 7);
       if(Food.instances[i].Img){
+        if(i === Food.dragHandler.hoverIndex && Food.instances[i].ImgHover){
+          image(Food.instances[i].ImgHover, Food.instances[i].X(), Food.instances[i].Y(), (Food.instances[i].r*2*Food.Heightbase)/Food.Scale, (Food.instances[i].r*2*Food.Heightbase)/Food.Scale);
+        }
+        else if(Food.dragHandler.dragging && i === Food.instances.length - 1 && Food.instances[i].ImgHover){
+          image(Food.instances[i].ImgHover, Food.instances[i].X(), Food.instances[i].Y(), (Food.instances[i].r*2*Food.Heightbase)/Food.Scale, (Food.instances[i].r*2*Food.Heightbase)/Food.Scale);
+        }
+        else{
         image(Food.instances[i].Img, Food.instances[i].X(), Food.instances[i].Y(), (Food.instances[i].r*2*Food.Heightbase)/Food.Scale, (Food.instances[i].r*2*Food.Heightbase)/Food.Scale);
+        }
         //ellipse(x + Food.instances[i].x, y + height - Food.instances[i].y, 5, 5);
       }
       /*
