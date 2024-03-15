@@ -182,7 +182,7 @@ function loadGeneratedText(food, toppings) {
 
 function review(reviewText, width, height){
   let maxWidth = width/4;
-  let y = height/14;
+  let y = height/14 *2;
   let x = width/6;
   let fontSize = width/40;
   textSize(fontSize);
