@@ -153,9 +153,9 @@ function loadGeneratedText(food, toppings) {
                                "From farm to table!  This place sources all its #topping1# and #topping2# from local farms.  Its a taste of the countrside with the #food#!" 
                             ],
             "neutral_event":  ["Nothing to special. The famed #topping1# was not up to the hype others built.",
-                              "The #food# was kinda mid, nothing impressive",
-                              "The #food# wasn't bad, but I've had better at different pizzaera.  The #topping1# and #topping2# were meh.",
-                              "The #food# was good, but I think the price was a bit too high than what it's worth.  Maybe better #topping2# will change my mind",
+                              "The order of #food# was kinda mid, nothing impressive",
+                              "The order of #food# wasn't bad, but I've had better at different pizzaera.  The #topping1# and #topping2# were meh.",
+                              "The order of #food# was good, but I think the price was a bit too high than what it's worth.  Maybe better #topping2# will change my mind",
                               "A not too expensive place to get a #food# if you don't want to pay too much for one. Kinda stale, but not bad to where you'll regret buying it"
                             ],
             "negative_event": ["Taking a bite of what appears to be a normal #food#, you're met with the unexpected texture of #topping1#. The shock was too much!",

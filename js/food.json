@@ -119,6 +119,11 @@
             "plus" : {
                 "super-mushroom": "mushroom"
             }
+        },
+        "cheese-sticks" : {
+            "img" : "./img/cheesesticks.png",
+            "plus" : {
+            }
         }
     },
 
