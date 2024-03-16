@@ -121,7 +121,7 @@ function draw() {
     //console.log(arr);
     //console.log(H);
     //Food.SaveHoverImages(0,9);
-    Food.SaveHoverImages(10,100);
+    //Food.SaveHoverImages(10,19);
     TT = 10;
   }
   TT--;

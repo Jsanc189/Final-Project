@@ -1334,7 +1334,7 @@ oven: {height: 578.222, array:[
       var Img2;
       if(data.ingredients[entry].img !== ""){
         Img = loadImage(data.ingredients[entry].img);
-        Img2 = loadImage("./HoverImg/" + data.ingredients[entry].img.substring(6, data.ingredients[entry].img.length - 4) + "_Hover.png");//data.ingredients[entry].img.substring(6, data.ingredients[entry].img.length - 4) + "_Hover"
+        //Img2 = loadImage("./HoverImg/" + data.ingredients[entry].img.substring(6, data.ingredients[entry].img.length - 4) + "_Hover.png");//data.ingredients[entry].img.substring(6, data.ingredients[entry].img.length - 4) + "_Hover"
       }
       if(Img){
         Food.images[data.ingredients[entry].img] = Img;
@@ -1347,7 +1347,7 @@ oven: {height: 578.222, array:[
 
   static SaveHoverImages(start, end){
     var count = 0;
-    if(false){
+    if(true){
       for(Img in Food.images){
         if(count >= start && count <= end){
         if(Img){

@@ -110,12 +110,12 @@
             }
         },
         "raw-pizza" : {
-            "img" : "",
+            "img" : "./img/rawPizza.PNG",
             "plus" : {
             }
         },
         "burnt-pizza" : {
-            "img" : "",
+            "img" : "./img/burntPizza.PNG",
             "plus" : {
                 "super-mushroom": "mushroom"
             }
