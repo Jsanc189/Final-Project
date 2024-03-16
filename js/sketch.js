@@ -58,7 +58,7 @@ function setup() {
   var f5 = new Food("mushroom", 44 + 12, 90, 4.5, FOODLIB, [], "icon", "ingredients", 0, 0, width, height);
   var f6 = new Food("pepperoni", 50 + 12, 90, 4.5, FOODLIB, [], "icon", "ingredients", 0, 0, width, height);
   var f7 = new Food("tomato", 56 + 12, 90, 4.5, FOODLIB, [], "icon", "ingredients", 0, 0, width, height);
-  // var f8 = new Food("pepperoni", 62, 90, 4.5, FOODLIB, [], "icon", "ingredients", 0, 0, width, height);
+   var f8 = new Food("pineapple", 62 + 12, 90, 4.5, FOODLIB, [], "icon", "ingredients", 0, 0, width, height);
   // var f9 = new Food("pizza", 68, 90, 4.5, FOODLIB, [], "icon", "ingredients", 0, 0, width, height);
   // var f10 = new Food("pizza-dough", 74, 90, 4.5, FOODLIB, [], "icon", "ingredients", 0, 0, width, height);
   // var f12 = new Food("tomato", 80, 90, 4.5, FOODLIB, [], "icon", "ingredients", 0, 0, width, height);
