@@ -4,8 +4,11 @@
             "img" : "./img/bacon.PNG",
             "plus" : {
                 "bacon" : "pepperoni",
-                "cheesy-dough" : "pizza",
-                "dough" : "pizza"
+                "cheesy-dough" : "raw-pizza",
+                "cheesier-dough" : "raw-pizza",
+                "pizza-dough" : "raw-pizza",
+                "raw-pizza": "raw-pizza",
+                "goop": "goop"
             }
         },
         "cheese" : {
@@ -14,73 +17,91 @@
                 "cheese" : "pineapple",
                 "dough" : "cheesy-dough",
                 "cheesier-dough" : "cheese",
-                "cheesy-dough" : "cheesier-dough"
+                "cheesy-dough" : "cheesier-dough",
+                "raw-pizza": "raw-pizza",
+                "goop": "goop"
             }
         },
         "cheesier-dough" : {
             "img" : "./img/cheesierDough.PNG",
             "plus" : {
                 "cheesy-dough" : "pizza-dough",
-                "pineapple" : "cheese"
+                "pineapple" : "cheese",
+                "goop": "pizza-dough"
             }
         },
         "cheesy-dough" : {
             "img" : "./img/cheesyDough.png",
             "plus" : {
-                "pineapple" : "cheesier-dough"
+                "pineapple" : "cheesier-dough",
+                "pepperoni": "raw-pizza",
+                "goop": "pizza-dough"
             }
         },
         "dough" : {
             "img" : "./img/dough.png",
             "plus" : {
-                "dough" : "dough",
+                "dough" : "pizza-dough",
                 "goop" : "pizza-dough",
-                "shredded cheese" : "cheesy-dough",
-                "tomato" : "pizza-dough"
+                "tomato" : "pizza-dough",
+                "pepperoni": "pizza-dough"
             }
         },
         "goop" : {
             "img" : "./img/goop.PNG",
             "plus" : {
                 "goop" : "goop",
-                "pizza-dough" : "pizza"
+                "pizza-dough" : "raw-pizza",
+                "raw-pizza": "raw-pizza",
+                "mushroom": "goop",
+                "pepperoni": "goop",
+                "pineapple": "goop"
             }
         },
         "mushroom" : {
             "img" : "./img/mushrooms.png",
             "plus" : {
-                "mushroom" : "super-mushroom"
+                "mushroom" : "super-mushroom",
+                "pepperoni" : "super-mushroom",
+                "pizza-dough": "raw-pizza",
+                "raw-pizza": "raw-pizza"
             }
         },
         "pepperoni" : {
             "img" : "./img/pepperoni.png",
             "plus" : {
-                "pizza-dough" : "pizza"
+                "pizza-dough" : "raw-pizza",
+                "raw-pizza": "raw-pizza"
             }
         },
         "pineapple" : {
             "img" : "./img/pineapple.png",
             "plus" : {
-                "pineapple" : "cheese"
+                "pineapple" : "cheese",
+                "tomato": "goop",
+                "raw-pizza": "raw-pizza"
             }
         },
         "pizza-dough" : {
             "img" : "./img/pizzaDough.PNG",
             "plus" : {
                 "super-mushroom" : "pizza",
-                "tomato" : "pizza"
+                "tomato" : "raw-pizza"
             }
         },
         "super-mushroom" : {
             "img": "./img/superMushroom.png",
             "plus" : {
                 "mushroom" : "goop",
-                "super-mushroom" : "tomato"
+                "super-mushroom" : "pizza",
+                "raw-pizza": "raw-pizza"
             }
         },
         "tomato" : {
             "img" : "./img/tomato.png",
             "plus" : {
+                "tomato": "goop",
+                "raw-pizza": "raw-pizza"
             }
         },
         "pizza" : {
@@ -88,14 +109,15 @@
             "plus" : {
             }
         },
-        "raw_pizza" : {
+        "raw-pizza" : {
             "img" : "",
             "plus" : {
             }
         },
-        "burnt_pizza" : {
+        "burnt-pizza" : {
             "img" : "",
             "plus" : {
+                "super-mushroom": "mushroom"
             }
         }
     },
@@ -128,7 +150,10 @@
                 "cheesier-dough" :  "cheese-sticks",
                 "cheesy-dough" : "pizza",
                 "mushroom" : "super-mushroom",
-                "pizza" : "burnt-pizza"
+                "pizza-dough": "dough",
+                "pizza" : "burnt-pizza",
+                "raw-pizza" : "pizza",
+                "pepperoni" : "burnt-pizza"
             }
         }
     }
