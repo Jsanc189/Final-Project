@@ -98,6 +98,7 @@ var I = 9;
 var arr = [];
 var currentReview = "";
 function draw() {
+  //SFX[TRASH].setVolume(0.5);
   background(255);
   var ratio = 1.5;
   var Scale = 1;
@@ -226,6 +227,7 @@ function playSong() {
   // Check if the song is loaded before playing
   if (bg_music.isLoaded()) {
     // Play the song
+    bg_music.setVolume(0.1);
     bg_music.loop();
     // Remove the event listener after the user gesture
     window.removeEventListener('click', playSong);
