@@ -9,7 +9,12 @@ let trash;
 let pres_table;
 let yes = true;
 let my_text;
-let bg_music;
+let bg_music, knifeSFX, trashSFX, blenderSFX, ovenSFX, pres_tableSFX, SFX;
+const KNIFE = "knife";
+const OVEN = "oven";
+const TRASH = "trash";
+const BLENDER = "blender";
+const PRES_TABLE = "pres_table";
 
 let grammar; //stores the text for reviews of food
 
@@ -25,6 +30,12 @@ function preload() {
   trash = loadImage("img/trash.png");
   pres_table = loadImage("img/pres_table.png");
   bg_music = loadSound('./audio/Streets_Of_Little_Italy.mp3')
+  knifeSFX = loadSound("audio/chopping.mp3");
+  trashSFX = loadSound("audio/crumple.mp3");
+  blenderSFX = loadSound("audio/blender.mp3");
+  ovenSFX = loadSound("audio/oven.mp3");
+  pres_tableSFX = loadSound("audio/ding.mp3");
+  SFX = {"knife": knifeSFX, "trash": trashSFX, "blender": blenderSFX, "oven": ovenSFX, "pres_table": pres_tableSFX};
 
   let xhreq = new XMLHttpRequest();
   xhreq.open("GET", "./js/food.json", false);

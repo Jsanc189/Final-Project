@@ -1407,11 +1407,11 @@ oven: {height: 578.222, array:[
       this.img = allCombos[category][name].img // dictionary of combinations for the food item, with entries being the result (Dict {})
     }
     if(this.img && this.img !== ""){
-      //this.Img = loadImage(this.img);
-      //this.Img = Food.images[this.img]; //HoverImages
-      this.Img = Food.images[this.img];
-      this.ImgHover = Food.HoverImages[this.img];
-      console.log("loading: " + this.img);
+        //this.Img = loadImage(this.img);
+        //this.Img = Food.images[this.img]; //HoverImages
+        this.Img = Food.images[this.img];
+        this.ImgHover = Food.HoverImages[this.img];
+        console.log("loading: " + this.img);
     }
     this.x = x;
     this.y = y;
@@ -1468,17 +1468,22 @@ oven: {height: 578.222, array:[
     for(var i = 0; i < Food.instances.length; i++){
       if(i !== index){
         if((dist(Food.instances[index].X(), Food.instances[index].Y(), Food.instances[i].X(), Food.instances[i].Y()) < (Food.instances[i].r*Food.Heightbase)/Food.Scale + (Food.instances[index].r*Food.Heightbase)/Food.Scale && Food.instances[index].type !== "icon" && Food.instances[i].type !== "icon") || (Food.colliders[Food.instances[i].name] && inside2(Food.instances[index].X(), Food.instances[index].Y(), Food.instances[i].X(), Food.instances[i].Y(), (Food.instances[index].r*Food.Heightbase)/Food.Scale, Food.colliders[Food.instances[i].name].array, Food.Heightbase, Food.colliders[Food.instances[i].name].height) && Food.instances[index].type !== "icon" && Food.instances[i].type === "tool")){
-          if(Food.instances[i].name === "trash"){
-            return "trash";
+          if(Food.instances[i].name === TRASH){
+            SFX[TRASH].play();
+            return TRASH;
           }
-          if(Food.instances[i].name === "pres_table"){
-            return "pres_table";
+          if(Food.instances[i].name === PRES_TABLE){
+            SFX[PRES_TABLE].play();
+            return PRES_TABLE;
           }
           var Outcome1 = Food.instances[i].getOutcome(Food.instances[index].name);
-          var Outcome2 = Food.instances[index].getOutcome(Food.instances[i].name);
-          console.log(Outcome1);
-          console.log(Outcome2);
-          if(Outcome1){
+        var Outcome2 = Food.instances[index].getOutcome(Food.instances[i].name);
+        console.log(Outcome1);
+        console.log(Outcome2);
+        if(Outcome1){
+            if (Food.instances[i].name === BLENDER) SFX[BLENDER].play();
+            if (Food.instances[i].name === OVEN) SFX[OVEN].play();
+            if (Food.instances[i].name === KNIFE) SFX[KNIFE].play();
             Outcomes.push({name: Outcome1, i:i});
           }
           if(Outcome2){
