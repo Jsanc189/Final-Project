@@ -96,7 +96,7 @@ var ImgScale = function(img, x, y, s, xb, yb, wb, hb){
 var TT = 0;
 var I = 9;
 var arr = [];
-var currentReview = "";
+var currentReview = "GIB FOOD!!!";
 function draw() {
   //SFX[TRASH].setVolume(0.5);
   background(255);
